@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Log</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #workout-list {
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: left;
+        }
+        .workout-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+        button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <h1>Workout Log</h1>
+    <input type="text" id="workout-input" placeholder="Enter workout (e.g. Squats 30 reps)">
+    <button onclick="addWorkout()">Add Workout</button>
+    
+    <div id="workout-list"></div>
+    
+    <script>
+        function addWorkout() {
+            let input = document.getElementById("workout-input");
+            let workoutText = input.value.trim();
+            if (workoutText === "") return;
+            
+            let workoutList = document.getElementById("workout-list");
+            let workoutItem = document.createElement("div");
+            workoutItem.className = "workout-item";
+            
+            let today = new Date().toISOString().split('T')[0];
+            let workoutEntry = document.createElement("span");
+            workoutEntry.textContent = `${today} - ${workoutText}`;
+            
+            let deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function () {
+                workoutList.removeChild(workoutItem);
+            };
+            
+            workoutItem.appendChild(workoutEntry);
+            workoutItem.appendChild(deleteButton);
+            workoutList.appendChild(workoutItem);
+            
+            input.value = "";
+        }
+    </script>
+</body>
+</html>
