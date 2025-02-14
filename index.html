@@ -1,74 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workout Log</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        #workout-list {
-            max-width: 400px;
-            margin: 20px auto;
-            text-align: left;
-        }
-        .workout-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            border: 1px solid #ccc;
-            margin-top: 5px;
-            border-radius: 5px;
-        }
-        button {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 5px;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-        button:hover {
-            background-color: darkred;
-        }
-    </style>
+    <title>UberMesh Training</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Workout Log</h1>
-    <input type="text" id="workout-input" placeholder="Enter workout (e.g. Squats 30 reps)">
-    <button onclick="addWorkout()">Add Workout</button>
-    
-    <div id="workout-list"></div>
-    
-    <script>
-        function addWorkout() {
-            let input = document.getElementById("workout-input");
-            let workoutText = input.value.trim();
-            if (workoutText === "") return;
-            
-            let workoutList = document.getElementById("workout-list");
-            let workoutItem = document.createElement("div");
-            workoutItem.className = "workout-item";
-            
-            let today = new Date().toISOString().split('T')[0];
-            let workoutEntry = document.createElement("span");
-            workoutEntry.textContent = `${today} - ${workoutText}`;
-            
-            let deleteButton = document.createElement("button");
-            deleteButton.textContent = "Delete";
-            deleteButton.onclick = function () {
-                workoutList.removeChild(workoutItem);
-            };
-            
-            workoutItem.appendChild(workoutEntry);
-            workoutItem.appendChild(deleteButton);
-            workoutList.appendChild(workoutItem);
-            
-            input.value = "";
-        }
-    </script>
+
+    <header>
+        <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
+        <div class="header-line"></div> <!-- 🔥 흰색 줄 유지 -->
+    </header>
+
+    <div class="container">
+        <h1>Welcome to UberMesh Training</h1>
+        <p class="bio">
+            "Experience the fusion of fitness and style!<br>
+            Dedicated to providing the best training and modeling expertise."
+        </p>
+
+        <h2>Portfolio</h2>
+        <div class="portfolio">
+            <img src="https://lh3.googleusercontent.com/d/1qfNZdo2jmWVnNyNmE0Tq-5A9gMkm_GT_=w1000" alt="Fitness Photo 1">
+            <img src="https://lh3.googleusercontent.com/d/13iYBYBk3w52nwpGd7xg-CfQbYd3gwDkf=w1000" alt="Fitness Photo 2">
+            <img src="https://lh3.googleusercontent.com/d/1zTMg0Up6RkMnuxQRxH9_N0jRZhjw9StL=w1000" alt="Fitness Photo 3">
+        </div>
+
+        <a href="record.html" class="record-btn">📖 Write Today's Log</a> <!-- 🔥 "Training Log" 제목 제거 -->
+
+        <h2>Contact & Social Media</h2>
+        <div class="contact">
+            <a href="https://instagram.com/gangster_yayong" target="_blank">Instagram</a>
+            <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
+        </div>
+    </div>
+
 </body>
 </html>

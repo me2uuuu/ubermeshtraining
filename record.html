@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Log</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
+    </header>
+
+    <div class="container">
+        <h1>Training Log</h1>
+        <p class="bio">
+            "Stay on track and elevate your fitness journey."
+        </p>
+
+        <section class="record-section">
+            <h2>📅 Date</h2>
+            <input type="date" id="entry-date">
+
+            <h2>🏋️ Workout</h2>
+            <textarea id="workout-details" placeholder="Log your workout (e.g., Squat 30 reps)"></textarea>
+
+            <h2>🍽️ Meals</h2>
+            <textarea id="food-details" placeholder="Log your meals (e.g., Chicken breast, banana)"></textarea>
+
+            <h2>📝 Notes</h2>
+            <textarea id="extra-details" placeholder="Write additional notes..."></textarea>
+
+            <h2>📸 Add a Photo</h2>
+            <input type="file" id="photo-upload" accept="image/*">
+
+            <button onclick="saveEntry()">💾 Save Log</button>
+        </section>
+
+        <section class="record-list">
+            <h2>📖 My Logs</h2>
+            <div id="entry-list"></div>
+        </section>
+
+        <footer>
+            <a href="index.html">
+                <button>🏠 Back to Portfolio</button>
+            </a>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
