@@ -1,6 +1,7 @@
+
 const CACHE_NAME = 'pwa-cache-v1';
 const urlsToCache = [
-  '/ubermeshtraining/',  // 🔥 GitHub Pages에 맞는 경로로 변경
+  '/ubermeshtraining/',  // 🔥 GitHub Pages 환경에 맞게 경로 변경
   '/ubermeshtraining/index.html',
   '/ubermeshtraining/styles.css',
   '/ubermeshtraining/manifest.json',
