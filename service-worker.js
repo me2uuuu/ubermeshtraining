@@ -1,11 +1,11 @@
 
 const CACHE_NAME = 'pwa-cache-v1';
 const urlsToCache = [
-  './',  
-  './index.html',
-  './styles.css',
-  './manifest.json',
-  './icon_black_bg_white_logo.png'
+  '/ubermeshtraining/',  // 🔥 GitHub Pages 환경에 맞게 경로 변경
+  '/ubermeshtraining/index.html',
+  '/ubermeshtraining/styles.css',
+  '/ubermeshtraining/manifest.json',
+  '/ubermeshtraining/icon_black_bg_white_logo.png'
 ];
 
 // Install Service Worker and Cache Files
