@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ubermensch Training</title>
 
-    <!-- PWA 설정 (경로 수정됨) -->
-    <link rel="manifest" href="/-/manifest.json">
+    <!-- PWA 설정 -->
+    <link rel="manifest" href="/ubermeshtraining/manifest.json">
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/-/service-worker.js')
+            navigator.serviceWorker.register('/ubermeshtraining/service-worker.js')
                 .then(() => console.log("Service Worker 등록 완료!"))
                 .catch(error => console.log("Service Worker 등록 실패:", error));
         }
