@@ -1,13 +1,14 @@
 
 const CACHE_NAME = 'pwa-cache-v1';
 const urlsToCache = [
-  '/ubermeshtraining/',  // 🔥 GitHub Pages 환경에 맞게 경로 변경
-  '/ubermeshtraining/index.html',
-  '/ubermeshtraining/styles.css',
-  '/ubermeshtraining/manifest.json',
-  '/ubermeshtraining/icon_black_bg_white_logo.png'
+  './',  
+  './index.html',
+  './styles.css',
+  './manifest.json',
+  './icon_black_bg_white_logo.png'
 ];
 
+// Install Service Worker and Cache Files
 self.addEventListener('install', (event) => {
   console.log("✅ Service Worker 설치 완료!");
   event.waitUntil(
@@ -18,6 +19,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
+// Fetch and Serve Cached Files
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
@@ -26,6 +28,7 @@ self.addEventListener('fetch', (event) => {
   );
 });
 
+// Activate and Clear Old Caches
 self.addEventListener('activate', (event) => {
   console.log("✅ Service Worker 활성화됨!");
   event.waitUntil(
