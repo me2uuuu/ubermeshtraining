@@ -1,13 +1,14 @@
+
 {
   "name": "Ubermensch Training",
   "short_name": "Training",
-  "start_url": "/",
+  "start_url": "/ubermeshtraining/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "/icon_black_bg_white_logo.png",
+      "src": "/ubermeshtraining/icon_black_bg_white_logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }
