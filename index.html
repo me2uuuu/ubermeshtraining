@@ -55,11 +55,16 @@
 
     <!-- ✅ 운동 기록 페이지 -->
     <div class="record-page" id="record-page">
+        <header>
+            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
+            <div class="header-line"></div>
+        </header>
+
         <h2>📓 Today's Log</h2>
-        
+
         <div class="record-form">
             <label for="entry-date">📅 Select Date</label>
-            <input type="date" id="entry-date">
+            <input type="date" id="entry-date" class="date-input">
 
             <label for="workout-details">🏋️ Workout Details</label>
             <textarea id="workout-details" placeholder="Enter workout details..."></textarea>
@@ -108,5 +113,6 @@
             list.prepend(entry);
         }
     </script>
+
 </body>
 </html>
