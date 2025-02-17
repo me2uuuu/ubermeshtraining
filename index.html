@@ -3,39 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubermensch Training</title>
+    <title>UberMesh Training</title>
 
     <!-- PWA 설정 -->
     <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Service Worker 설정 -->
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js')
-                .then(() => console.log("✅ Service Worker 등록 완료!"))
-                .catch(error => console.log("❌ Service Worker 등록 실패:", error));
+                .then(function(registration) {
+                    console.log('Service Worker registered with scope: ', registration.scope);
+                }).catch(function(error) {
+                    console.log('Service Worker registration failed: ', error);
+                });
         }
     </script>
-
-    <!-- PWA 아이콘 -->
-    <link rel="icon" type="image/png" href="/icon_black_bg_white_logo.png">
 
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <header>
-        <div class="logo-container">
-            <svg width="200" height="100" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                <rect width="512" height="512" fill="black"/>
-                <text x="50%" y="50%" font-size="50" fill="white" font-family="Arial" text-anchor="middle" dy=".3em">
-                    Ubermensch
-                </text>
-            </svg>
-        </div>
+        <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
         <div class="header-line"></div>
     </header>
-
-    <div class="container">
-        <h1>Welcome to Ubermensch Training</h1>
+    <div class="container" id="main-page">
+        <h1>Welcome to UberMesh Training</h1>
         <p class="bio">
             "Experience the fusion of fitness and style!<br>
             Dedicated to providing the best training and modeling expertise."
@@ -48,7 +42,8 @@
             <img src="https://lh3.googleusercontent.com/d/1zTMg0Up6RkMnuxQRxH9_N0jRZhjw9StL=w1000" alt="Fitness Photo 3">
         </div>
 
-        <a href="record.html" class="record-btn">📖 Write Today's Log</a>
+        <h2>Training Log</h2>
+        <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
 
         <h2>Contact & Social Media</h2>
         <div class="contact">
@@ -57,5 +52,50 @@
         </div>
     </div>
 
+    <!-- 운동 기록 페이지 -->
+    <div class="record-page" id="record-page">
+        <h2>📓 Today's Log</h2>
+        <div class="record-form">
+            <input type="date" id="entry-date">
+            <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
+            <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
+            <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
+            <input type="file" id="photo-upload">
+        </div>
+
+        <div class="record-buttons">
+            <button class="save-btn" onclick="saveEntry()">Save Entry</button>
+            <button class="back-btn" onclick="goBack()">Back</button>
+        </div>
+
+        <div id="entry-list" class="record-list"></div>
+    </div>
+
+    <script>
+        function showRecordPage() {
+            document.getElementById("main-page").style.display = "none";
+            document.getElementById("record-page").style.display = "block";
+        }
+
+        function goBack() {
+            document.getElementById("record-page").style.display = "none";
+            document.getElementById("main-page").style.display = "block";
+        }
+
+        function saveEntry() {
+            const date = document.getElementById("entry-date").value;
+            const workout = document.getElementById("workout-details").value;
+            const food = document.getElementById("food-details").value;
+            const extra = document.getElementById("extra-details").value;
+
+            const list = document.getElementById("entry-list");
+            const entry = document.createElement("div");
+            entry.innerHTML = `<h3>📅 ${date}</h3>
+                               <p>🏋️ ${workout}</p>
+                               <p>🍽️ ${food}</p>
+                               <p>📝 ${extra}</p>`;
+            list.prepend(entry);
+        }
+    </script>
 </body>
 </html>
