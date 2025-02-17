@@ -1,23 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubermensch Training<title>
+    <title>Ubermensch Training</title>
 
     <!-- PWA 설정 -->
-    <link rel="manifest" href="/ubermeshtraining/manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/ubermeshtraining/service-worker.js')
+            navigator.serviceWorker.register('/service-worker.js')
                 .then(() => console.log("✅ Service Worker 등록 완료!"))
                 .catch(error => console.log("❌ Service Worker 등록 실패:", error));
         }
     </script>
 
-    <!-- PWA 아이콘을 코드로 설정 (SVG) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='black'/><text x='50%' y='50%' font-size='50' fill='white' font-family='Arial' text-anchor='middle' dy='.3em'>Ubermensch</text></svg>">
+    <!-- PWA 아이콘 -->
+    <link rel="icon" type="image/png" href="/icon_black_bg_white_logo.png">
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -32,7 +31,7 @@
                 </text>
             </svg>
         </div>
-        <div class="header-line"></div> <!-- 🔥 흰색 줄 유지 -->
+        <div class="header-line"></div>
     </header>
 
     <div class="container">
@@ -49,7 +48,7 @@
             <img src="https://lh3.googleusercontent.com/d/1zTMg0Up6RkMnuxQRxH9_N0jRZhjw9StL=w1000" alt="Fitness Photo 3">
         </div>
 
-        <a href="record.html" class="record-btn">📖 Write Today's Log</a> <!-- 🔥 "Training Log" 제목 제거 -->
+        <a href="record.html" class="record-btn">📖 Write Today's Log</a>
 
         <h2>Contact & Social Media</h2>
         <div class="contact">
@@ -60,4 +59,3 @@
 
 </body>
 </html>
-
