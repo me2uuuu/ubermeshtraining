@@ -1,16 +1,15 @@
 {
-  "name": "Ubermensch Training",
-  "short_name": "Ubermensch",
-  "description": "Experience the fusion of fitness and style!",
-  "icons": [
-    {
-      "src": "/icon_black_bg_white_logo.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
+  "name": "UberMesh Training",
+  "short_name": "UberMesh",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#000000"
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "/icon_black_bg_white_logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
 }
