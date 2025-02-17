@@ -1,0 +1,16 @@
+{
+  "name": "Ubermensch Training",
+  "short_name": "Ubermensch",
+  "description": "Experience the fusion of fitness and style!",
+  "icons": [
+    {
+      "src": "/icon_black_bg_white_logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000"
+}
