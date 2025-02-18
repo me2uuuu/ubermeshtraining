@@ -106,4 +106,65 @@
             background: rgba(255, 255, 255, 0.2);
         }
     </style>
-</head
+</head>
+<body>
+
+    <!-- ✅ 첫 번째 페이지 -->
+    <div class="container" id="main-page">
+        <header>
+            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
+        </header>
+
+        <h1>Welcome to UberMesh Training</h1>
+        <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
+    </div>
+
+    <!-- ✅ 두 번째 페이지 -->
+    <div class="container record-page" id="record-page">
+        <header>
+            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo"> 
+        </header>
+
+        <h2>📓 Today's Log</h2>
+        <div class="record-form">
+            <input type="date" id="entry-date">
+            <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
+            <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
+            <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
+
+            <!-- ✅ 파일 선택 버튼 -->
+            <input type="file" id="photo-upload" class="file-upload">
+        </div>
+
+        <div class="record-buttons">
+            <button class="save-btn" onclick="saveEntry()">Save Entry</button>
+            <button class="back-btn" onclick="goBack()">Back</button>
+        </div>
+    </div>
+
+    <script>
+        /* ✅ 페이지 전환 */
+        function showRecordPage() {
+            document.getElementById("main-page").style.display = "none";
+            document.getElementById("record-page").style.display = "block";
+        }
+
+        function goBack() {
+            document.getElementById("record-page").style.display = "none";
+            document.getElementById("main-page").style.display = "block";
+        }
+
+        /* ✅ 운동 기록 저장 (콘솔 출력) */
+        function saveEntry() {
+            const date = document.getElementById("entry-date").value;
+            const workout = document.getElementById("workout-details").value;
+            const food = document.getElementById("food-details").value;
+            const extra = document.getElementById("extra-details").value;
+
+            console.log(`📅 ${date}\n🏋️ ${workout}\n🍽️ ${food}\n📝 ${extra}`);
+            alert("운동 기록이 저장되었습니다!");
+        }
+    </script>
+
+</body>
+</html>
