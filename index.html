@@ -5,178 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UberMesh Training</title>
 
-    <style>
-        /* ✅ 다크 모드 스타일 */
-        body {
-            font-family: Arial, sans-serif;
-            background: #000000;
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+    <!-- PWA 설정 -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: #111111;
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+    <!-- Service Worker 설정 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then((registration) => {
+                    console.log('Service Worker 등록 완료:', registration.scope);
+                })
+                .catch((error) => {
+                    console.log('Service Worker 등록 실패:', error);
+                });
         }
+    </script>
 
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .logo {
-            width: 250px;
-            height: auto;
-            filter: invert(1);
-        }
-
-        .header-line {
-            width: 80%;
-            height: 2px;
-            background-color: white;
-            margin-top: 10px;
-        }
-
-        h1, h2 {
-            color: white;
-        }
-
-        .portfolio {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .portfolio img {
-            width: 100%;
-            max-width: 300px;
-            margin: 10px;
-            border-radius: 8px;
-        }
-
-        .contact {
-            margin-top: 20px;
-        }
-
-        .contact a, .record-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            text-decoration: none;
-            border: 2px solid white;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background 0.3s ease-in-out;
-        }
-
-        .contact a:hover, .record-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .record-btn {
-            background: none;
-        }
-
-        /* ✅ 운동 기록 페이지 */
-        .record-page {
-            display: none;
-            padding: 20px;
-            background: #000;  /* 🔥 배경 블랙 */
-            border-radius: 8px;
-            margin-top: 30px;
-            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .record-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
-            margin: auto;
-        }
-
-        textarea, input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #555;
-            background: #222;
-            color: white;
-        }
-
-        /* ✅ 달력 필드 테두리 흰색 */
-        #entry-date {
-            border: 2px solid white;
-            background: #222;
-            color: white;
-            text-align: center;
-        }
-
-        /* ✅ 버튼 스타일 */
-        .record-buttons {
-            display: flex;
-            justify-content: space-between; /* 가로 정렬 */
-            margin-top: 15px;
-            gap: 10px;
-        }
-
-        .save-btn, .back-btn {
-            flex: 1; /* 버튼이 같은 크기로 */
-            padding: 12px;
-            border: 2px solid white;
-            color: white;
-            background: none;
-            font-weight: bold;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease-in-out;
-        }
-
-        .save-btn:hover, .back-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* ✅ 파일 업로드 버튼 스타일 */
-        .file-upload {
-            margin-bottom: 20px;
-        }
-
-        /* ✅ 파일 선택 버튼 글씨 색상 변경 */
-        input[type="file"]::file-selector-button {
-            background: white;
-            color: black;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* ✅ 불필요한 검정 사각형 제거 */
-        .record-list {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <header>
         <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
         <div class="header-line"></div>
     </header>
 
+    <!-- ✅ 첫 번째 페이지 -->
     <div class="container" id="main-page">
         <h1>Welcome to UberMesh Training</h1>
         <p class="bio">
@@ -201,10 +55,10 @@
         </div>
     </div>
 
-    <!-- ✅ 운동 기록 페이지 -->
+    <!-- ✅ 두 번째 페이지 -->
     <div class="record-page" id="record-page">
         <header>
-            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo"> <!-- 🔥 2페이지에도 로고 추가 -->
+            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
             <div class="header-line"></div>
         </header>
 
@@ -212,12 +66,16 @@
         <div class="record-form">
             <label for="entry-date">📅 Select Date</label>
             <input type="date" id="entry-date">
+
             <label for="workout-details">🏋️ Workout Details</label>
             <textarea id="workout-details" placeholder="Enter workout details..."></textarea>
+
             <label for="food-details">🍽️ Food Details</label>
             <textarea id="food-details" placeholder="Enter food details..."></textarea>
+
             <label for="extra-details">📝 Extra Notes</label>
             <textarea id="extra-details" placeholder="Enter additional notes..."></textarea>
+
             <label for="photo-upload">📂 Upload Photo</label>
             <input type="file" id="photo-upload" class="file-upload">
         </div>
@@ -226,9 +84,12 @@
             <button class="save-btn" onclick="saveEntry()">Save Entry</button>
             <button class="back-btn" onclick="goBack()">Back</button>
         </div>
+
+        <div id="entry-list" class="record-list"></div>
     </div>
 
     <script>
+        /* ✅ 버튼 클릭 시 페이지 전환 */
         function showRecordPage() {
             document.getElementById("main-page").style.display = "none";
             document.getElementById("record-page").style.display = "block";
@@ -238,7 +99,22 @@
             document.getElementById("record-page").style.display = "none";
             document.getElementById("main-page").style.display = "block";
         }
-    </script>
 
+        /* ✅ 운동 기록 저장 */
+        function saveEntry() {
+            const date = document.getElementById("entry-date").value;
+            const workout = document.getElementById("workout-details").value;
+            const food = document.getElementById("food-details").value;
+            const extra = document.getElementById("extra-details").value;
+
+            const list = document.getElementById("entry-list");
+            const entry = document.createElement("div");
+            entry.innerHTML = `<h3>📅 ${date}</h3>
+                               <p>🏋️ ${workout}</p>
+                               <p>🍽️ ${food}</p>
+                               <p>📝 ${extra}</p>`;
+            list.prepend(entry);
+        }
+    </script>
 </body>
 </html>
