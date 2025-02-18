@@ -109,10 +109,10 @@
 
         /* ✅ 파일 선택 버튼 글씨 블랙 */
         .file-upload {
-            color: black !important; /* ✅ 글씨 블랙 */
+            color: black; /* ✅ 글씨 블랙 */
             background: white;
             border: 1px solid white;
-            padding: 8px;
+            padding: 8px; /* ✅ 패딩 조정 */
             border-radius: 5px;
             text-align: center;
         }
@@ -125,7 +125,7 @@
             margin-top: 15px;
         }
 
-        .save-btn, .back-btn {
+        .back-btn {
             flex: 1;
             max-width: 150px;
             padding: 12px;
@@ -139,7 +139,7 @@
             transition: background 0.3s ease-in-out;
         }
 
-        .save-btn:hover, .back-btn:hover {
+        .back-btn:hover {
             background: rgba(255, 255, 255, 0.2);
         }
     </style>
@@ -149,65 +149,4 @@
     <!-- ✅ 첫 번째 페이지 -->
     <div class="container" id="main-page">
         <header>
-            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
-        </header>
-
-        <h1>Welcome to UberMesh Training</h1>
-        <p class="bio">
-            "Experience the fusion of fitness and style!<br>
-            Dedicated to providing the best training and modeling expertise."
-        </p>
-
-        <h2>Portfolio</h2>
-        <div class="portfolio">
-            <img src="https://lh3.googleusercontent.com/d/1qfNZdo2jmWVnNyNmE0Tq-5A9gMkm_GT_=w1000" alt="Fitness Photo 1">
-            <img src="https://lh3.googleusercontent.com/d/13iYBYBk3w52nwpGd7xg-CfQbYd3gwDkf=w1000" alt="Fitness Photo 2">
-            <img src="https://lh3.googleusercontent.com/d/1zTMg0Up6RkMnuxQRxH9_N0jRZhjw9StL=w1000" alt="Fitness Photo 3">
-        </div>
-
-        <h2>Training Log</h2>
-        <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
-
-        <h2>Contact & Social Media</h2>
-        <div class="contact">
-            <a href="https://instagram.com/gangster_yayong" target="_blank">Instagram</a>
-            <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
-        </div>
-    </div>
-
-    <!-- ✅ 두 번째 페이지 -->
-    <div class="container record-page" id="record-page">
-        <header>
-            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo"> 
-        </header>
-
-        <h2>📓 Today's Log</h2>
-        <div class="record-form">
-            <input type="date" id="entry-date">
-            <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
-            <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
-            <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
-            <input type="file" id="photo-upload" class="file-upload">
-        </div>
-
-        <!-- ✅ 버튼 가운데 정렬 -->
-        <div class="record-buttons">
-            <button class="save-btn" onclick="saveEntry()">Save Entry</button>
-            <button class="back-btn" onclick="goBack()">Back</button>
-        </div>
-    </div>
-
-    <script>
-        function showRecordPage() {
-            document.getElementById("main-page").style.display = "none";
-            document.getElementById("record-page").style.display = "block";
-        }
-
-        function goBack() {
-            document.getElementById("record-page").style.display = "none";
-            document.getElementById("main-page").style.display = "block";
-        }
-    </script>
-
-</body>
-</html>
+            <img src="https://i.imgur.com/xUIPA1Z
