@@ -18,7 +18,7 @@
 
         .container {
             max-width: 800px;
-            margin: auto;
+            margin: 50px auto;
             padding: 20px;
             background: #111111;
             border-radius: 8px;
@@ -26,14 +26,12 @@
         }
 
         header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
+            text-align: center;
+            padding-bottom: 20px;
         }
 
         .logo {
-            width: 250px;
+            width: 200px;
             height: auto;
             filter: invert(1);
         }
@@ -42,7 +40,7 @@
             width: 80%;
             height: 2px;
             background-color: white;
-            margin-top: 10px;
+            margin: 10px auto;
         }
 
         h1, h2 {
@@ -53,23 +51,20 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
+            gap: 10px;
         }
 
         .portfolio img {
             width: 100%;
-            max-width: 300px;
-            margin: 10px;
+            max-width: 280px;
             border-radius: 8px;
         }
 
-        .contact {
-            margin-top: 20px;
-        }
-
-        .contact a, .record-btn {
+        /* ✅ 버튼 공통 스타일 */
+        .btn {
             display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
+            padding: 12px 20px;
+            margin-top: 15px;
             text-decoration: none;
             border: 2px solid white;
             color: white;
@@ -80,12 +75,8 @@
             cursor: pointer;
         }
 
-        .contact a:hover, .record-btn:hover {
+        .btn:hover {
             background: rgba(255, 255, 255, 0.2);
-        }
-
-        .record-btn {
-            background: none;
         }
 
         /* ✅ 운동 기록 페이지 */
@@ -123,7 +114,7 @@
             text-align: center;
         }
 
-        /* ✅ 날짜 입력 스타일 */
+        /* ✅ 날짜 입력 필드 */
         #entry-date {
             background: #444;
             border: 1px solid white;
@@ -134,16 +125,17 @@
             font-size: 16px;
         }
 
-        /* ✅ 버튼 스타일 */
+        /* ✅ 버튼 정렬 */
         .record-buttons {
             display: flex;
             justify-content: space-between;
             width: 100%;
             max-width: 450px;
+            margin: 20px auto 0;
             gap: 10px;
         }
 
-        .save-btn, .back-btn {
+        .btn-save, .btn-back {
             flex: 1;
             padding: 12px;
             border: 2px solid white;
@@ -156,14 +148,12 @@
             transition: background 0.3s ease-in-out;
         }
 
-        .save-btn:hover, .back-btn:hover {
+        .btn-save:hover, .btn-back:hover {
             background: rgba(255, 255, 255, 0.2);
         }
 
         /* ✅ 파일 업로드 버튼 */
         .file-upload {
-            width: 100%;
-            max-width: 450px;
             padding: 10px;
             border-radius: 5px;
             background: white;
@@ -175,10 +165,13 @@
 
         /* ✅ 페이지 전환 애니메이션 */
         .hidden {
+            opacity: 0;
             display: none;
+            transition: opacity 0.5s ease-in-out;
         }
         
         .visible {
+            opacity: 1;
             display: flex;
         }
 
@@ -194,7 +187,7 @@
         </header>
 
         <h1>Welcome to UberMesh Training</h1>
-        <p class="bio">
+        <p>
             "Experience the fusion of fitness and style!<br>
             Dedicated to providing the best training and modeling expertise."
         </p>
@@ -207,7 +200,7 @@
         </div>
 
         <h2>Training Log</h2>
-        <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
+        <button class="btn" onclick="showRecordPage()">📖 Write Today's Log</button>
     </div>
 
     <!-- ✅ 두 번째 페이지 -->
@@ -222,8 +215,8 @@
         </div>
 
         <div class="record-buttons">
-            <button class="save-btn" onclick="saveEntry()">Save Entry</button>
-            <button class="back-btn" onclick="goBack()">Back</button>
+            <button class="btn-save" onclick="saveEntry()">Save Entry</button>
+            <button class="btn-back" onclick="goBack()">Back</button>
         </div>
     </div>
 
@@ -240,7 +233,6 @@
             document.getElementById("main-page").classList.remove("hidden");
         }
 
-        /* ✅ 날짜 기본값 오늘로 설정 */
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("entry-date").valueAsDate = new Date();
         });
