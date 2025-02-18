@@ -9,7 +9,7 @@
         /* ✅ 다크 모드 스타일 */
         body {
             font-family: Arial, sans-serif;
-            background: #000000;
+            background: #000000; /* ✅ 배경 블랙 */
             color: white;
             text-align: center;
             margin: 0;
@@ -18,29 +18,23 @@
 
         .container {
             max-width: 800px;
-            margin: 50px auto;
+            margin: auto;
             padding: 20px;
-            background: #111111;
+            background: #000000; /* ✅ 배경 블랙 유지 */
             border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
         }
 
         header {
-            text-align: center;
-            padding-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
         }
 
         .logo {
-            width: 200px;
+            width: 250px;
             height: auto;
             filter: invert(1);
-        }
-
-        .header-line {
-            width: 80%;
-            height: 2px;
-            background-color: white;
-            margin: 10px auto;
         }
 
         h1, h2 {
@@ -51,20 +45,23 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
         }
 
         .portfolio img {
             width: 100%;
-            max-width: 280px;
+            max-width: 300px;
+            margin: 10px;
             border-radius: 8px;
         }
 
-        /* ✅ 버튼 공통 스타일 */
-        .btn {
+        .contact {
+            margin-top: 20px;
+        }
+
+        .contact a, .record-btn {
             display: inline-block;
-            padding: 12px 20px;
-            margin-top: 15px;
+            padding: 10px 20px;
+            margin: 10px;
             text-decoration: none;
             border: 2px solid white;
             color: white;
@@ -72,71 +69,66 @@
             font-size: 16px;
             border-radius: 5px;
             transition: background 0.3s ease-in-out;
-            cursor: pointer;
         }
 
-        .btn:hover {
+        .contact a:hover, .record-btn:hover {
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* ✅ 운동 기록 페이지 */
-        .record-page {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #333;
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+        .record-btn {
+            background: none;
         }
 
+        /* ✅ 운동 기록 페이지 간격 조정 */
+        .record-page {
+            display: none;
+            padding: 40px 20px; /* ✅ 상단 간격 추가 */
+            background: #000000;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* ✅ 폼 내부 요소 간격 정리 */
         .record-form {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            width: 100%;
+            gap: 20px; /* ✅ 간격 늘림 */
             max-width: 500px;
+            margin: auto;
         }
 
         textarea, input {
             width: 100%;
-            max-width: 450px;
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #555;
             background: #222;
             color: white;
-            text-align: center;
         }
 
-        /* ✅ 날짜 입력 필드 */
-        #entry-date {
-            background: #444;
+        /* ✅ 파일 선택 글씨 블랙 유지 */
+        .file-upload {
+            margin-bottom: 20px;
+            color: black; /* ✅ 글씨 블랙 */
+            background: white;
             border: 1px solid white;
-            color: white;
-            padding: 10px;
+            padding: 8px; /* ✅ 패딩 조정 */
             border-radius: 5px;
             text-align: center;
-            font-size: 16px;
         }
 
-        /* ✅ 버튼 정렬 */
+        /* ✅ 버튼 스타일 */
         .record-buttons {
             display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 450px;
-            margin: 20px auto 0;
+            justify-content: center;
             gap: 10px;
+            margin-top: 15px;
         }
 
-        .btn-save, .btn-back {
+        .save-btn, .back-btn {
             flex: 1;
+            max-width: 150px;
             padding: 12px;
             border: 2px solid white;
             color: white;
@@ -148,46 +140,21 @@
             transition: background 0.3s ease-in-out;
         }
 
-        .btn-save:hover, .btn-back:hover {
+        .save-btn:hover, .back-btn:hover {
             background: rgba(255, 255, 255, 0.2);
         }
-
-        /* ✅ 파일 업로드 버튼 */
-        .file-upload {
-            padding: 10px;
-            border-radius: 5px;
-            background: white;
-            color: black;
-            text-align: center;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* ✅ 페이지 전환 애니메이션 */
-        .hidden {
-            opacity: 0;
-            display: none;
-            transition: opacity 0.5s ease-in-out;
-        }
-        
-        .visible {
-            opacity: 1;
-            display: flex;
-        }
-
     </style>
 </head>
 <body>
 
     <!-- ✅ 첫 번째 페이지 -->
-    <div class="container visible" id="main-page">
+    <div class="container" id="main-page">
         <header>
             <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
-            <div class="header-line"></div>
         </header>
 
         <h1>Welcome to UberMesh Training</h1>
-        <p>
+        <p class="bio">
             "Experience the fusion of fitness and style!<br>
             Dedicated to providing the best training and modeling expertise."
         </p>
@@ -200,11 +167,21 @@
         </div>
 
         <h2>Training Log</h2>
-        <button class="btn" onclick="showRecordPage()">📖 Write Today's Log</button>
+        <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
+
+        <h2>Contact & Social Media</h2>
+        <div class="contact">
+            <a href="https://instagram.com/gangster_yayong" target="_blank">Instagram</a>
+            <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
+        </div>
     </div>
 
     <!-- ✅ 두 번째 페이지 -->
-    <div class="container record-page hidden" id="record-page">
+    <div class="container record-page" id="record-page">
+        <header>
+            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo"> 
+        </header>
+
         <h2>📓 Today's Log</h2>
         <div class="record-form">
             <input type="date" id="entry-date">
@@ -214,28 +191,23 @@
             <input type="file" id="photo-upload" class="file-upload">
         </div>
 
+        <!-- ✅ 버튼 가운데 정렬 -->
         <div class="record-buttons">
-            <button class="btn-save" onclick="saveEntry()">Save Entry</button>
-            <button class="btn-back" onclick="goBack()">Back</button>
+            <button class="save-btn" onclick="goBack()">Back</button>
         </div>
     </div>
 
     <script>
+        /* ✅ 페이지 전환 */
         function showRecordPage() {
-            document.getElementById("main-page").classList.add("hidden");
-            document.getElementById("record-page").classList.remove("hidden");
-            document.getElementById("record-page").classList.add("visible");
+            document.getElementById("main-page").style.display = "none";
+            document.getElementById("record-page").style.display = "block";
         }
 
         function goBack() {
-            document.getElementById("record-page").classList.add("hidden");
-            document.getElementById("record-page").classList.remove("visible");
-            document.getElementById("main-page").classList.remove("hidden");
+            document.getElementById("record-page").style.display = "none";
+            document.getElementById("main-page").style.display = "block";
         }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("entry-date").valueAsDate = new Date();
-        });
     </script>
 
 </body>
