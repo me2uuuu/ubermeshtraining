@@ -109,7 +109,7 @@
 
         /* ✅ 파일 선택 버튼 글씨 블랙 */
         .file-upload {
-            color: black; /* ✅ 글씨 블랙 */
+            color: black !important; /* ✅ 글씨 블랙 */
             background: white;
             border: 1px solid white;
             padding: 8px;
@@ -198,7 +198,6 @@
     </div>
 
     <script>
-        /* ✅ 페이지 전환 */
         function showRecordPage() {
             document.getElementById("main-page").style.display = "none";
             document.getElementById("record-page").style.display = "block";
@@ -207,17 +206,6 @@
         function goBack() {
             document.getElementById("record-page").style.display = "none";
             document.getElementById("main-page").style.display = "block";
-        }
-
-        /* ✅ 운동 기록 저장 (콘솔 출력) */
-        function saveEntry() {
-            const date = document.getElementById("entry-date").value;
-            const workout = document.getElementById("workout-details").value;
-            const food = document.getElementById("food-details").value;
-            const extra = document.getElementById("extra-details").value;
-
-            console.log(`📅 ${date}\n🏋️ ${workout}\n🍽️ ${food}\n📝 ${extra}`);
-            alert("운동 기록이 저장되었습니다!");
         }
     </script>
 
