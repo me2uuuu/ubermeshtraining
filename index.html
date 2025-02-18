@@ -49,43 +49,101 @@
             color: white;
         }
 
+        .portfolio {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .portfolio img {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+
+        .contact {
+            margin-top: 20px;
+        }
+
+        .contact a, .record-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            text-decoration: none;
+            border: 2px solid white;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .contact a:hover, .record-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .record-btn {
+            background: none;
+        }
+
+        /* ✅ 운동 기록 페이지 - 중앙 정렬 */
+        .record-page {
+            display: none;
+            flex-direction: column;
+            align-items: center; /* 중앙 정렬 */
+            justify-content: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto; /* 자동 중앙 정렬 */
+            padding: 20px;
+            background: #333;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+        }
+
         .record-form {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 15px;
+            width: 100%;
             max-width: 500px;
-            margin: auto;
         }
 
         textarea, input {
             width: 100%;
+            max-width: 450px;
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #555;
             background: #222;
             color: white;
+            text-align: center;
         }
 
-        /* ✅ 파일 선택 버튼 스타일 수정 */
-        input[type="file"] {
-            color: black;
-            background: white;
-            padding: 5px;
+        /* ✅ 날짜 입력 스타일 */
+        #entry-date {
+            background: #444;
+            border: 1px solid white;
+            color: white;
+            padding: 10px;
             border-radius: 5px;
-            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
         }
 
-        /* ✅ 버튼 정렬 수정 (한 줄로 맞추기) */
+        /* ✅ 버튼 스타일 */
         .record-buttons {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 450px;
             gap: 10px;
-            margin-top: 15px;
         }
 
         .save-btn, .back-btn {
             flex: 1;
-            max-width: 200px;
             padding: 12px;
             border: 2px solid white;
             color: white;
@@ -101,18 +159,18 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* ✅ "Today's Log" 배경 블랙으로 변경 */
-        .record-page {
-            display: none;
-            padding: 20px;
-            background: #000000; /* 블랙 배경 */
-            border-radius: 8px;
-            margin-top: 30px;
-            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
-            max-width: 600px;
-            margin: auto;
+        /* ✅ 파일 업로드 버튼 */
+        .file-upload {
+            width: 100%;
+            max-width: 450px;
+            padding: 10px;
+            border-radius: 5px;
+            background: white;
+            color: black;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
         }
-
     </style>
 </head>
 <body>
@@ -130,71 +188,43 @@
             Dedicated to providing the best training and modeling expertise."
         </p>
 
+        <h2>Portfolio</h2>
+        <div class="portfolio">
+            <img src="https://lh3.googleusercontent.com/d/1qfNZdo2jmWVnNyNmE0Tq-5A9gMkm_GT_=w1000" alt="Fitness Photo 1">
+            <img src="https://lh3.googleusercontent.com/d/13iYBYBk3w52nwpGd7xg-CfQbYd3gwDkf=w1000" alt="Fitness Photo 2">
+            <img src="https://lh3.googleusercontent.com/d/1zTMg0Up6RkMnuxQRxH9_N0jRZhjw9StL=w1000" alt="Fitness Photo 3">
+        </div>
+
         <h2>Training Log</h2>
         <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
-
-        <h2>Contact & Social Media</h2>
-        <div class="contact">
-            <a href="https://instagram.com/gangster_yayong" target="_blank">Instagram</a>
-            <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
-        </div>
     </div>
 
     <!-- ✅ 두 번째 페이지 -->
     <div class="container record-page" id="record-page">
         <h2>📓 Today's Log</h2>
         <div class="record-form">
-            <label for="entry-date">📅 Select Date</label>
             <input type="date" id="entry-date">
-
-            <label for="workout-details">🏋️ Workout Details</label>
-            <textarea id="workout-details" placeholder="Enter workout details..."></textarea>
-
-            <label for="food-details">🍽️ Food Details</label>
-            <textarea id="food-details" placeholder="Enter food details..."></textarea>
-
-            <label for="extra-details">📝 Extra Notes</label>
-            <textarea id="extra-details" placeholder="Enter additional notes..."></textarea>
-
-            <label for="photo-upload">📂 Upload Photo</label>
+            <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
+            <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
+            <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
             <input type="file" id="photo-upload" class="file-upload">
         </div>
 
-        <!-- ✅ 버튼 정렬 수정 -->
         <div class="record-buttons">
             <button class="save-btn" onclick="saveEntry()">Save Entry</button>
             <button class="back-btn" onclick="goBack()">Back</button>
         </div>
-
-        <div id="entry-list" class="record-list"></div>
     </div>
 
     <script>
-        /* ✅ 페이지 전환 */
         function showRecordPage() {
             document.getElementById("main-page").style.display = "none";
-            document.getElementById("record-page").style.display = "block";
+            document.getElementById("record-page").style.display = "flex";
         }
 
         function goBack() {
             document.getElementById("record-page").style.display = "none";
             document.getElementById("main-page").style.display = "block";
-        }
-
-        /* ✅ 운동 기록 저장 */
-        function saveEntry() {
-            const date = document.getElementById("entry-date").value;
-            const workout = document.getElementById("workout-details").value;
-            const food = document.getElementById("food-details").value;
-            const extra = document.getElementById("extra-details").value;
-
-            const list = document.getElementById("entry-list");
-            const entry = document.createElement("div");
-            entry.innerHTML = `<h3>📅 ${date}</h3>
-                               <p>🏋️ ${workout}</p>
-                               <p>🍽️ ${food}</p>
-                               <p>📝 ${extra}</p>`;
-            list.prepend(entry);
         }
     </script>
 
