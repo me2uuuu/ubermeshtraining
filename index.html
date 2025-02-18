@@ -49,59 +49,11 @@
             color: white;
         }
 
-        .portfolio {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .portfolio img {
-            width: 100%;
-            max-width: 300px;
-            margin: 10px;
-            border-radius: 8px;
-        }
-
-        .contact {
-            margin-top: 20px;
-        }
-
-        .contact a, .record-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            text-decoration: none;
-            border: 2px solid white;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background 0.3s ease-in-out;
-        }
-
-        .contact a:hover, .record-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .record-btn {
-            background: none;
-        }
-
-        /* ✅ 운동 기록 페이지 */
-        .record-page {
-            display: none;
-            padding: 20px;
-            background: #333; /* ✅ 배경 회색으로 변경 */
-            border-radius: 8px;
-            margin-top: 30px;
-            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
-            max-width: 600px;
-            margin: auto;
-        }
-
+        /* ✅ 입력 필드 & 버튼 모두 가운데 정렬 */
         .record-form {
             display: flex;
             flex-direction: column;
+            align-items: center;  /* 가운데 정렬 */
             gap: 15px;
             max-width: 500px;
             margin: auto;
@@ -114,30 +66,28 @@
             border: 1px solid #555;
             background: #222;
             color: white;
+            text-align: left;
         }
 
-        /* ✅ 달력(날짜 선택) 수정 */
-        #entry-date {
-            background: #444;
-            border: 1px solid white;
-            color: white;
-            padding: 10px;
+        /* ✅ "파일 선택" 버튼 스타일 */
+        input[type="file"] {
+            color: black; /* 🔥 파일 선택 글씨 검은색으로 변경 */
+            background: white;
+            padding: 5px;
             border-radius: 5px;
-            text-align: center;
-            font-size: 16px;
+            cursor: pointer;
         }
 
         /* ✅ 버튼 스타일 */
         .record-buttons {
             display: flex;
-            justify-content: space-between; /* 가로 정렬 */
-            margin-top: 15px;
+            justify-content: center;  /* 가운데 정렬 */
             gap: 10px;
+            margin-top: 15px;
         }
 
         .save-btn, .back-btn {
-            flex: 1;
-            padding: 12px;
+            padding: 12px 20px;
             border: 2px solid white;
             color: white;
             background: none;
@@ -152,11 +102,6 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* ✅ 파일 선택 버튼 수정 */
-        .file-upload {
-            margin-bottom: 20px;
-            color: black !important; /* ✅ 글씨 검정으로 변경 */
-        }
     </style>
 </head>
 <body>
@@ -174,13 +119,6 @@
             Dedicated to providing the best training and modeling expertise."
         </p>
 
-        <h2>Portfolio</h2>
-        <div class="portfolio">
-            <img src="https://lh3.googleusercontent.com/d/1qfNZdo2jmWVnNyNmE0Tq-5A9gMkm_GT_=w1000" alt="Fitness Photo 1">
-            <img src="https://lh3.googleusercontent.com/d/13iYBYBk3w52nwpGd7xg-CfQbYd3gwDkf=w1000" alt="Fitness Photo 2">
-            <img src="https://lh3.googleusercontent.com/d/1zTMg0Up6RkMnuxQRxH9_N0jRZhjw9StL=w1000" alt="Fitness Photo 3">
-        </div>
-
         <h2>Training Log</h2>
         <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
 
@@ -192,22 +130,26 @@
     </div>
 
     <!-- ✅ 두 번째 페이지 -->
-    <div class="container record-page" id="record-page">
-        <header>
-            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
-            <div class="header-line"></div>
-        </header>
-
+    <div class="container record-page" id="record-page" style="display: none;">
         <h2>📓 Today's Log</h2>
         <div class="record-form">
+            <label for="entry-date">📅 Select Date</label>
             <input type="date" id="entry-date">
-            <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
-            <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
-            <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
+
+            <label for="workout-details">🏋️ Workout Details</label>
+            <textarea id="workout-details" placeholder="Enter workout details..."></textarea>
+
+            <label for="food-details">🍽️ Food Details</label>
+            <textarea id="food-details" placeholder="Enter food details..."></textarea>
+
+            <label for="extra-details">📝 Extra Notes</label>
+            <textarea id="extra-details" placeholder="Enter additional notes..."></textarea>
+
+            <label for="photo-upload">📂 Upload Photo</label>
             <input type="file" id="photo-upload" class="file-upload">
         </div>
 
-        <!-- ✅ 버튼 가로 정렬 -->
+        <!-- ✅ 버튼 가로 정렬 & 가운데 정렬 -->
         <div class="record-buttons">
             <button class="save-btn" onclick="saveEntry()">Save Entry</button>
             <button class="back-btn" onclick="goBack()">Back</button>
@@ -226,6 +168,22 @@
         function goBack() {
             document.getElementById("record-page").style.display = "none";
             document.getElementById("main-page").style.display = "block";
+        }
+
+        /* ✅ 운동 기록 저장 */
+        function saveEntry() {
+            const date = document.getElementById("entry-date").value;
+            const workout = document.getElementById("workout-details").value;
+            const food = document.getElementById("food-details").value;
+            const extra = document.getElementById("extra-details").value;
+
+            const list = document.getElementById("entry-list");
+            const entry = document.createElement("div");
+            entry.innerHTML = `<h3>📅 ${date}</h3>
+                               <p>🏋️ ${workout}</p>
+                               <p>🍽️ ${food}</p>
+                               <p>📝 ${extra}</p>`;
+            list.prepend(entry);
         }
     </script>
 
