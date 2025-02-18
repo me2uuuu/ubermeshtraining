@@ -9,7 +9,7 @@
         /* ✅ 다크 모드 스타일 */
         body {
             font-family: Arial, sans-serif;
-            background: #000000; /* ✅ 배경 블랙 */
+            background: #000000;
             color: white;
             text-align: center;
             margin: 0;
@@ -20,8 +20,9 @@
             max-width: 800px;
             margin: auto;
             padding: 20px;
-            background: #000000; /* ✅ 배경 블랙 유지 */
+            background: #111111;
             border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
         }
 
         header {
@@ -35,6 +36,13 @@
             width: 250px;
             height: auto;
             filter: invert(1);
+        }
+
+        .header-line {
+            width: 80%;
+            height: 2px;
+            background-color: white;
+            margin-top: 10px;
         }
 
         h1, h2 {
@@ -83,7 +91,7 @@
         .record-page {
             display: none;
             padding: 20px;
-            background: #000000; /* ✅ 배경 블랙 유지 */
+            background: #000; /* ✅ 배경 블랙 */
             border-radius: 8px;
             margin-top: 30px;
             max-width: 600px;
@@ -107,28 +115,49 @@
             color: white;
         }
 
-        /* ✅ 파일 선택 글씨 색상 블랙 */
+        /* ✅ 파일 선택 버튼 스타일 수정 */
         .file-upload {
-            margin-bottom: 20px;
-            color: black; /* ✅ 파일 선택 글씨 블랙 */
-            background: white;
-            border: 1px solid white;
-            padding: 5px;
+            width: 100%;
+            padding: 10px;
             border-radius: 5px;
+            border: 1px solid #555;
+            background: #222;
+            color: black; /* ✅ 글씨 블랙 */
             text-align: center;
+            cursor: pointer;
+            display: block;
+        }
+
+        .file-upload::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+
+        .file-upload::before {
+            content: "파일 선택";
+            display: inline-block;
+            background: #444;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .file-upload:hover::before {
+            background: #555;
         }
 
         /* ✅ 버튼 스타일 */
         .record-buttons {
             display: flex;
-            justify-content: center;
-            gap: 10px;
+            justify-content: space-between; /* 가로 정렬 */
             margin-top: 15px;
+            gap: 10px;
         }
 
         .save-btn, .back-btn {
-            flex: 1;
-            max-width: 150px;
+            flex: 1; /* 버튼이 같은 크기로 */
             padding: 12px;
             border: 2px solid white;
             color: white;
@@ -152,6 +181,7 @@
     <div class="container" id="main-page">
         <header>
             <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
+            <div class="header-line"></div>
         </header>
 
         <h1>Welcome to UberMesh Training</h1>
@@ -180,7 +210,8 @@
     <!-- ✅ 두 번째 페이지 -->
     <div class="container record-page" id="record-page">
         <header>
-            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo"> <!-- ✅ 2번째 페이지 로고 추가 -->
+            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
+            <div class="header-line"></div>
         </header>
 
         <h2>📓 Today's Log</h2>
@@ -192,43 +223,11 @@
             <input type="file" id="photo-upload" class="file-upload">
         </div>
 
-        <!-- ✅ 버튼 가운데 정렬 -->
         <div class="record-buttons">
             <button class="save-btn" onclick="saveEntry()">Save Entry</button>
             <button class="back-btn" onclick="goBack()">Back</button>
         </div>
-
-        <div id="entry-list" class="record-list"></div>
     </div>
-
-    <script>
-        /* ✅ 페이지 전환 */
-        function showRecordPage() {
-            document.getElementById("main-page").style.display = "none";
-            document.getElementById("record-page").style.display = "block";
-        }
-
-        function goBack() {
-            document.getElementById("record-page").style.display = "none";
-            document.getElementById("main-page").style.display = "block";
-        }
-
-        /* ✅ 운동 기록 저장 */
-        function saveEntry() {
-            const date = document.getElementById("entry-date").value;
-            const workout = document.getElementById("workout-details").value;
-            const food = document.getElementById("food-details").value;
-            const extra = document.getElementById("extra-details").value;
-
-            const list = document.getElementById("entry-list");
-            const entry = document.createElement("div");
-            entry.innerHTML = `<h3>📅 ${date}</h3>
-                               <p>🏋️ ${workout}</p>
-                               <p>🍽️ ${food}</p>
-                               <p>📝 ${extra}</p>`;
-            list.prepend(entry);
-        }
-    </script>
 
 </body>
 </html>
