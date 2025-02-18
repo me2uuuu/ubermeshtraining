@@ -87,63 +87,46 @@
             background: none;
         }
 
-        /* ✅ 운동 기록 페이지 - 중앙 정렬 */
+        /* ✅ 운동 기록 페이지 (기본적으로 숨김) */
         .record-page {
             display: none;
-            flex-direction: column;
-            align-items: center; /* 중앙 정렬 */
-            justify-content: center;
-            width: 100%;
-            max-width: 600px;
-            margin: 50px auto; /* 자동 중앙 정렬 */
             padding: 20px;
-            background: #333;
+            background: #222;
             border-radius: 8px;
+            margin-top: 30px;
             box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+            margin: auto;
         }
 
         .record-form {
             display: flex;
             flex-direction: column;
-            align-items: center;
             gap: 15px;
-            width: 100%;
             max-width: 500px;
+            margin: auto;
         }
 
         textarea, input {
             width: 100%;
-            max-width: 450px;
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #555;
             background: #222;
             color: white;
-            text-align: center;
-        }
-
-        /* ✅ 날짜 입력 스타일 */
-        #entry-date {
-            background: #444;
-            border: 1px solid white;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 16px;
         }
 
         /* ✅ 버튼 스타일 */
         .record-buttons {
             display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 450px;
+            justify-content: center; /* ✅ 버튼 정렬 가운데로 수정 */
             gap: 10px;
+            margin-top: 15px;
         }
 
         .save-btn, .back-btn {
-            flex: 1;
+            flex: 1; /* 버튼 크기 동일 */
+            max-width: 150px; /* 버튼 크기 제한 */
             padding: 12px;
             border: 2px solid white;
             color: white;
@@ -159,17 +142,10 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* ✅ 파일 업로드 버튼 */
+        /* ✅ 파일 선택 글씨 색상 수정 */
         .file-upload {
-            width: 100%;
-            max-width: 450px;
-            padding: 10px;
-            border-radius: 5px;
-            background: white;
-            color: black;
-            text-align: center;
-            font-weight: bold;
-            cursor: pointer;
+            margin-bottom: 20px;
+            color: white; /* ✅ 흰색 글씨 */
         }
     </style>
 </head>
@@ -197,6 +173,12 @@
 
         <h2>Training Log</h2>
         <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
+
+        <h2>Contact & Social Media</h2>
+        <div class="contact">
+            <a href="https://instagram.com/gangster_yayong" target="_blank">Instagram</a>
+            <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
+        </div>
     </div>
 
     <!-- ✅ 두 번째 페이지 -->
@@ -210,21 +192,41 @@
             <input type="file" id="photo-upload" class="file-upload">
         </div>
 
+        <!-- ✅ 버튼 가운데 정렬 -->
         <div class="record-buttons">
             <button class="save-btn" onclick="saveEntry()">Save Entry</button>
             <button class="back-btn" onclick="goBack()">Back</button>
         </div>
+
+        <div id="entry-list" class="record-list"></div>
     </div>
 
     <script>
+        /* ✅ 페이지 전환 */
         function showRecordPage() {
             document.getElementById("main-page").style.display = "none";
-            document.getElementById("record-page").style.display = "flex";
+            document.getElementById("record-page").style.display = "block";
         }
 
         function goBack() {
             document.getElementById("record-page").style.display = "none";
             document.getElementById("main-page").style.display = "block";
+        }
+
+        /* ✅ 운동 기록 저장 */
+        function saveEntry() {
+            const date = document.getElementById("entry-date").value;
+            const workout = document.getElementById("workout-details").value;
+            const food = document.getElementById("food-details").value;
+            const extra = document.getElementById("extra-details").value;
+
+            const list = document.getElementById("entry-list");
+            const entry = document.createElement("div");
+            entry.innerHTML = `<h3>📅 ${date}</h3>
+                               <p>🏋️ ${workout}</p>
+                               <p>🍽️ ${food}</p>
+                               <p>📝 ${extra}</p>`;
+            list.prepend(entry);
         }
     </script>
 
