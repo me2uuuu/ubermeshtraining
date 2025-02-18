@@ -9,7 +9,7 @@
         /* ✅ 다크 모드 스타일 */
         body {
             font-family: Arial, sans-serif;
-            background: #000000; /* ✅ 배경 블랙 */
+            background: #000000;
             color: white;
             text-align: center;
             margin: 0;
@@ -20,7 +20,7 @@
             max-width: 800px;
             margin: auto;
             padding: 20px;
-            background: #000000; /* ✅ 배경 블랙 유지 */
+            background: #000000;
             border-radius: 8px;
         }
 
@@ -41,59 +41,19 @@
             color: white;
         }
 
-        .portfolio {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .portfolio img {
-            width: 100%;
-            max-width: 300px;
-            margin: 10px;
-            border-radius: 8px;
-        }
-
-        .contact {
-            margin-top: 20px;
-        }
-
-        .contact a, .record-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            text-decoration: none;
-            border: 2px solid white;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background 0.3s ease-in-out;
-        }
-
-        .contact a:hover, .record-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .record-btn {
-            background: none;
-        }
-
-        /* ✅ 운동 기록 페이지 간격 조정 */
         .record-page {
             display: none;
-            padding: 40px 20px; /* ✅ 상단 간격 추가 */
+            padding: 40px 20px;
             background: #000000;
             border-radius: 8px;
             max-width: 600px;
             margin: auto;
         }
 
-        /* ✅ 폼 내부 요소 간격 정리 */
         .record-form {
             display: flex;
             flex-direction: column;
-            gap: 20px; /* ✅ 간격 늘림 */
+            gap: 20px;
             max-width: 500px;
             margin: auto;
         }
@@ -109,15 +69,18 @@
 
         /* ✅ 파일 선택 버튼 글씨 블랙 */
         .file-upload {
-            color: black; /* ✅ 글씨 블랙 */
-            background: white;
-            border: 1px solid white;
-            padding: 8px; /* ✅ 패딩 조정 */
+            display: block;
+            width: 100%;
+            padding: 10px;
             border-radius: 5px;
+            border: 1px solid white;
+            background: white;
+            color: black !important; /* ✅ 글씨 블랙 */
+            font-weight: bold;
             text-align: center;
+            cursor: pointer;
         }
 
-        /* ✅ 버튼 스타일 */
         .record-buttons {
             display: flex;
             justify-content: center;
@@ -125,7 +88,7 @@
             margin-top: 15px;
         }
 
-        .back-btn {
+        .save-btn, .back-btn {
             flex: 1;
             max-width: 150px;
             padding: 12px;
@@ -139,14 +102,8 @@
             transition: background 0.3s ease-in-out;
         }
 
-        .back-btn:hover {
+        .save-btn:hover, .back-btn:hover {
             background: rgba(255, 255, 255, 0.2);
         }
     </style>
-</head>
-<body>
-
-    <!-- ✅ 첫 번째 페이지 -->
-    <div class="container" id="main-page">
-        <header>
-            <img src="https://i.imgur.com/xUIPA1Z
+</head
