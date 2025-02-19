@@ -6,9 +6,10 @@
     <title>UberMesh Training</title>
 
     <style>
+        /* ✅ 다크 모드 스타일 */
         body {
             font-family: Arial, sans-serif;
-            background: #000000;
+            background: #000000; /* ✅ 배경 블랙 */
             color: white;
             text-align: center;
             margin: 0;
@@ -19,14 +20,80 @@
             max-width: 800px;
             margin: auto;
             padding: 20px;
-            background: #000000;
+            background: #000000; /* ✅ 배경 블랙 유지 */
             border-radius: 8px;
         }
 
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 250px;
+            height: auto;
+            filter: invert(1);
+        }
+
+        h1, h2 {
+            color: white;
+        }
+
+        .portfolio {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .portfolio img {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+
+        .contact {
+            margin-top: 20px;
+        }
+
+        .contact a, .record-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            text-decoration: none;
+            border: 2px solid white;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .contact a:hover, .record-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .record-btn {
+            background: none;
+        }
+
+        /* ✅ 운동 기록 페이지 간격 조정 */
+        .record-page {
+            display: none;
+            padding: 40px 20px; /* ✅ 상단 간격 추가 */
+            background: #000000;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* ✅ 폼 내부 요소 간격 정리 */
         .record-form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 20px; /* ✅ 간격 늘림 */
             max-width: 500px;
             margin: auto;
         }
@@ -40,39 +107,28 @@
             color: white;
         }
 
-        /* 파일 업로드 버튼 */
-        #photo-upload {
-            display: none;
-        }
-
-        .file-upload-label {
-            display: inline-block;
-            background: black;
-            color: white;
-            padding: 10px 15px;
+        /* ✅ 파일 선택 글씨 블랙 유지 */
+        .file-upload {
+            margin-bottom: 20px;
+            color: black; /* ✅ 글씨 블랙 */
+            background: white;
+            border: 1px solid white;
+            padding: 8px; /* ✅ 패딩 조정 */
             border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
             text-align: center;
-            border: 2px solid white;
-            transition: background 0.3s ease-in-out;
         }
 
-        .file-upload-label:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
+        /* ✅ 버튼 스타일 */
         .record-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-            width: 100%;
+            gap: 10px;
+            margin-top: 15px;
         }
 
         .save-btn, .back-btn {
             flex: 1;
-            max-width: 180px;
+            max-width: 150px;
             padding: 12px;
             border: 2px solid white;
             color: white;
@@ -82,44 +138,62 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s ease-in-out;
-            text-align: center;
         }
 
         .save-btn:hover, .back-btn:hover {
             background: rgba(255, 255, 255, 0.2);
         }
-
-        #image-preview {
-            max-width: 100%;
-            margin-top: 10px;
-            border-radius: 8px;
-            display: none;
-        }
     </style>
 </head>
 <body>
 
+    <!-- ✅ 첫 번째 페이지 -->
     <div class="container" id="main-page">
+        <header>
+            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
+        </header>
+
         <h1>Welcome to UberMesh Training</h1>
+        <p class="bio">
+            "Experience the fusion of fitness and style!<br>
+            Dedicated to providing the best training and modeling expertise."
+        </p>
+
+        <h2>Portfolio</h2>
+        <div class="portfolio">
+            <img src="https://lh3.googleusercontent.com/d/1qfNZdo2jmWVnNyNmE0Tq-5A9gMkm_GT_=w1000" alt="Fitness Photo 1">
+            <img src="https://lh3.googleusercontent.com/d/13iYBYBk3w52nwpGd7xg-CfQbYd3gwDkf=w1000" alt="Fitness Photo 2">
+            <img src="https://lh3.googleusercontent.com/d/1zTMg0Up6RkMnuxQRxH9_N0jRZhjw9StL=w1000" alt="Fitness Photo 3">
+        </div>
+
+        <h2>Training Log</h2>
         <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
+
+        <h2>Contact & Social Media</h2>
+        <div class="contact">
+            <a href="https://instagram.com/gangster_yayong" target="_blank">Instagram</a>
+            <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
+        </div>
     </div>
 
-    <div class="container record-page" id="record-page" style="display: none;">
+    <!-- ✅ 두 번째 페이지 -->
+    <div class="container record-page" id="record-page">
+        <header>
+            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo"> 
+        </header>
+
         <h2>📓 Today's Log</h2>
         <div class="record-form">
             <input type="date" id="entry-date">
             <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
             <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
             <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
-
-            <input type="file" id="photo-upload" accept="image/*">
-            <label for="photo-upload" class="file-upload-label">📁 Select File</label>
-            <img id="image-preview">
+            <input type="file" id="photo-upload" class="file-upload">
         </div>
 
+        <!-- ✅ 버튼 가운데 정렬 -->
         <div class="record-buttons">
-            <button class="save-btn" onclick="saveRecord()">Save</button>
-            <button class="back-btn" onclick="goBack()">Back</button>
+            <button class="save-btn" onclick="goBack()">Back</button>
         </div>
     </div>
 
@@ -128,77 +202,15 @@
         function showRecordPage() {
             document.getElementById("main-page").style.display = "none";
             document.getElementById("record-page").style.display = "block";
-            loadRecord();
         }
 
         function goBack() {
             document.getElementById("record-page").style.display = "none";
             document.getElementById("main-page").style.display = "block";
         }
-
-        /* ✅ 이미지 미리보기 */
-        document.getElementById("photo-upload").addEventListener("change", function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const imgPreview = document.getElementById("image-preview");
-                    imgPreview.src = e.target.result;
-                    imgPreview.style.display = "block";
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        /* ✅ 운동 기록 저장 */
-        function saveRecord() {
-            const entryDate = document.getElementById("entry-date").value;
-            const workoutDetails = document.getElementById("workout-details").value;
-            const foodDetails = document.getElementById("food-details").value;
-            const extraDetails = document.getElementById("extra-details").value;
-
-            const imageInput = document.getElementById("photo-upload");
-            if (imageInput.files.length > 0) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    saveToLocalStorage(entryDate, workoutDetails, foodDetails, extraDetails, e.target.result);
-                };
-                reader.readAsDataURL(imageInput.files[0]);
-            } else {
-                saveToLocalStorage(entryDate, workoutDetails, foodDetails, extraDetails, null);
-            }
-        }
-
-        function saveToLocalStorage(date, workout, food, extra, image) {
-            const logEntry = {
-                date: date,
-                workout: workout,
-                food: food,
-                extra: extra,
-                image: image
-            };
-            localStorage.setItem("trainingLog", JSON.stringify(logEntry));
-            alert("✅ Training log saved!");
-        }
-
-        /* ✅ 저장된 기록 불러오기 */
-        function loadRecord() {
-            const savedData = localStorage.getItem("trainingLog");
-            if (savedData) {
-                const logEntry = JSON.parse(savedData);
-                document.getElementById("entry-date").value = logEntry.date;
-                document.getElementById("workout-details").value = logEntry.workout;
-                document.getElementById("food-details").value = logEntry.food;
-                document.getElementById("extra-details").value = logEntry.extra;
-
-                if (logEntry.image) {
-                    const imgPreview = document.getElementById("image-preview");
-                    imgPreview.src = logEntry.image;
-                    imgPreview.style.display = "block";
-                }
-            }
-        }
     </script>
 
 </body>
 </html>
+
+
