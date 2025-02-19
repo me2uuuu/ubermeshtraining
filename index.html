@@ -149,6 +149,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s ease-in-out;
+            text-align: center;
         }
 
         .save-btn:hover, .back-btn:hover {
@@ -207,7 +208,8 @@
 
         <!-- ✅ 버튼 가운데 정렬 -->
         <div class="record-buttons">
-            <button class="save-btn" onclick="goBack()">Back</button>
+            <button class="save-btn" onclick="saveFile()">Save File</button>
+            <button class="back-btn" onclick="goBack()">Back</button>
         </div>
     </div>
 
@@ -221,6 +223,10 @@
         function goBack() {
             document.getElementById("record-page").style.display = "none";
             document.getElementById("main-page").style.display = "block";
+        }
+
+        function saveFile() {
+            alert("Save File 기능이 추가될 예정입니다!");
         }
     </script>
 
