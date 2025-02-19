@@ -82,7 +82,7 @@
         /* ✅ 운동 기록 페이지 간격 조정 */
         .record-page {
             display: none;
-            padding: 40px 20px; /* ✅ 상단 간격 추가 */
+            padding: 40px 20px;
             background: #000000;
             border-radius: 8px;
             max-width: 600px;
@@ -93,7 +93,7 @@
         .record-form {
             display: flex;
             flex-direction: column;
-            gap: 20px; /* ✅ 간격 늘림 */
+            gap: 20px;
             max-width: 500px;
             margin: auto;
         }
@@ -107,16 +107,22 @@
             color: white;
         }
 
-        /* ✅ 파일 선택 버튼 글씨 블랙으로 변경 */
+        /* ✅ 파일 선택 버튼 UI 통일 */
         .file-upload {
-            margin-bottom: 20px;
-            color: black; /* ✅ 글씨 블랙 */
-            background: white;
-            border: 1px solid white;
-            padding: 8px;
+            display: inline-block;
+            padding: 12px 20px;
+            color: white;
+            background: none;
+            border: 2px solid white;
             border-radius: 5px;
+            font-weight: bold;
             text-align: center;
             cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .file-upload:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         /* ✅ 버튼 스타일 */
@@ -189,7 +195,9 @@
             <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
             <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
             <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
-            <input type="file" id="photo-upload" class="file-upload">
+            <label class="file-upload">
+                Select File<input type="file" id="photo-upload" style="display: none;">
+            </label>
         </div>
 
         <!-- ✅ 버튼 가운데 정렬 -->
