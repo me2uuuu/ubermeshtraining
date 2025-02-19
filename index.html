@@ -20,7 +20,7 @@
             max-width: 800px;
             margin: auto;
             padding: 20px;
-            background: #000000; /* ✅ 배경 블랙 유지 */
+            background: #000000;
             border-radius: 8px;
         }
 
@@ -79,7 +79,7 @@
             background: none;
         }
 
-        /* ✅ 운동 기록 페이지 간격 조정 */
+        /* ✅ 운동 기록 페이지 */
         .record-page {
             display: none;
             padding: 40px 20px;
@@ -89,7 +89,6 @@
             margin: auto;
         }
 
-        /* ✅ 폼 내부 요소 간격 정리 */
         .record-form {
             display: flex;
             flex-direction: column;
@@ -107,14 +106,14 @@
             color: white;
         }
 
-        /* ✅ 파일 선택 버튼 (블랙) */
+        /* ✅ 파일 선택 버튼 */
         #photo-upload {
-            display: none; /* 기본 input[type="file"] 숨기기 */
+            display: none;
         }
 
         .file-upload-label {
             display: inline-block;
-            background: black; /* ✅ 블랙 배경 */
+            background: black;
             color: white;
             padding: 10px 15px;
             border-radius: 5px;
@@ -129,17 +128,18 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* ✅ 버튼 스타일 */
+        /* ✅ 버튼 정렬 */
         .record-buttons {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 20px;
+            margin-top: 20px;
+            width: 100%;
         }
 
         .save-btn, .back-btn {
             flex: 1;
-            max-width: 150px;
+            max-width: 180px;
             padding: 12px;
             border: 2px solid white;
             color: white;
@@ -149,6 +149,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s ease-in-out;
+            text-align: center;
         }
 
         .save-btn:hover, .back-btn:hover {
@@ -200,14 +201,13 @@
             <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
             <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
             
-            <!-- ✅ 파일 업로드 버튼 -->
             <input type="file" id="photo-upload">
             <label for="photo-upload" class="file-upload-label">📁 Select File</label>
         </div>
 
-        <!-- ✅ 버튼 가운데 정렬 -->
         <div class="record-buttons">
-            <button class="save-btn" onclick="goBack()">Back</button>
+            <button class="save-btn" onclick="saveRecord()">Save</button>
+            <button class="back-btn" onclick="goBack()">Back</button>
         </div>
     </div>
 
@@ -221,6 +221,19 @@
         function goBack() {
             document.getElementById("record-page").style.display = "none";
             document.getElementById("main-page").style.display = "block";
+        }
+
+        /* ✅ 운동 기록 저장 */
+        function saveRecord() {
+            const logEntry = {
+                date: document.getElementById("entry-date").value,
+                workout: document.getElementById("workout-details").value,
+                food: document.getElementById("food-details").value,
+                extra: document.getElementById("extra-details").value
+            };
+
+            localStorage.setItem("trainingLog", JSON.stringify(logEntry));
+            alert("✅ Training log saved!");
         }
     </script>
 
