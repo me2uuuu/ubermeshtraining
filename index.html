@@ -6,10 +6,10 @@
     <title>UberMesh Training</title>
 
     <style>
-        /* ✅ 다크 모드 스타일 */
+        /* ✅ 스타일 유지 */
         body {
             font-family: Arial, sans-serif;
-            background: #000000; /* ✅ 배경 블랙 */
+            background: #000000;
             color: white;
             text-align: center;
             margin: 0;
@@ -22,71 +22,6 @@
             padding: 20px;
             background: #000000;
             border-radius: 8px;
-        }
-
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .logo {
-            width: 250px;
-            height: auto;
-            filter: invert(1);
-        }
-
-        h1, h2 {
-            color: white;
-        }
-
-        .portfolio {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .portfolio img {
-            width: 100%;
-            max-width: 300px;
-            margin: 10px;
-            border-radius: 8px;
-        }
-
-        .contact {
-            margin-top: 20px;
-        }
-
-        .contact a, .record-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            text-decoration: none;
-            border: 2px solid white;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background 0.3s ease-in-out;
-        }
-
-        .contact a:hover, .record-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .record-btn {
-            background: none;
-        }
-
-        /* ✅ 운동 기록 페이지 */
-        .record-page {
-            display: none;
-            padding: 40px 20px;
-            background: #000000;
-            border-radius: 8px;
-            max-width: 600px;
-            margin: auto;
         }
 
         .record-form {
@@ -106,7 +41,7 @@
             color: white;
         }
 
-        /* ✅ 파일 선택 버튼 */
+        /* ✅ 파일 업로드 버튼 */
         #photo-upload {
             display: none;
         }
@@ -155,54 +90,34 @@
         .save-btn:hover, .back-btn:hover {
             background: rgba(255, 255, 255, 0.2);
         }
+
+        /* ✅ 이미지 미리보기 스타일 */
+        #image-preview {
+            max-width: 100%;
+            margin-top: 10px;
+            border-radius: 8px;
+            display: none;
+        }
     </style>
 </head>
 <body>
 
-    <!-- ✅ 첫 번째 페이지 -->
     <div class="container" id="main-page">
-        <header>
-            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
-        </header>
-
         <h1>Welcome to UberMesh Training</h1>
-        <p class="bio">
-            "Experience the fusion of fitness and style!<br>
-            Dedicated to providing the best training and modeling expertise."
-        </p>
-
-        <h2>Portfolio</h2>
-        <div class="portfolio">
-            <img src="https://lh3.googleusercontent.com/d/1qfNZdo2jmWVnNyNmE0Tq-5A9gMkm_GT_=w1000" alt="Fitness Photo 1">
-            <img src="https://lh3.googleusercontent.com/d/13iYBYBk3w52nwpGd7xg-CfQbYd3gwDkf=w1000" alt="Fitness Photo 2">
-            <img src="https://lh3.googleusercontent.com/d/1zTMg0Up6RkMnuxQRxH9_N0jRZhjw9StL=w1000" alt="Fitness Photo 3">
-        </div>
-
-        <h2>Training Log</h2>
         <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
-
-        <h2>Contact & Social Media</h2>
-        <div class="contact">
-            <a href="https://instagram.com/gangster_yayong" target="_blank">Instagram</a>
-            <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
-        </div>
     </div>
 
-    <!-- ✅ 두 번째 페이지 -->
-    <div class="container record-page" id="record-page">
-        <header>
-            <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo"> 
-        </header>
-
+    <div class="container record-page" id="record-page" style="display: none;">
         <h2>📓 Today's Log</h2>
         <div class="record-form">
             <input type="date" id="entry-date">
             <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
             <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
             <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
-            
-            <input type="file" id="photo-upload">
+
+            <input type="file" id="photo-upload" accept="image/*">
             <label for="photo-upload" class="file-upload-label">📁 Select File</label>
+            <img id="image-preview">
         </div>
 
         <div class="record-buttons">
@@ -216,6 +131,7 @@
         function showRecordPage() {
             document.getElementById("main-page").style.display = "none";
             document.getElementById("record-page").style.display = "block";
+            loadRecord();
         }
 
         function goBack() {
@@ -223,17 +139,71 @@
             document.getElementById("main-page").style.display = "block";
         }
 
-        /* ✅ 운동 기록 저장 */
-        function saveRecord() {
-            const logEntry = {
-                date: document.getElementById("entry-date").value,
-                workout: document.getElementById("workout-details").value,
-                food: document.getElementById("food-details").value,
-                extra: document.getElementById("extra-details").value
-            };
+        /* ✅ 이미지 파일 선택 시 미리보기 */
+        document.getElementById("photo-upload").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgPreview = document.getElementById("image-preview");
+                    imgPreview.src = e.target.result;
+                    imgPreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
-            localStorage.setItem("trainingLog", JSON.stringify(logEntry));
-            alert("✅ Training log saved!");
+        /* ✅ 운동 기록 저장 (이미지 포함) */
+        function saveRecord() {
+            const entryDate = document.getElementById("entry-date").value;
+            const workoutDetails = document.getElementById("workout-details").value;
+            const foodDetails = document.getElementById("food-details").value;
+            const extraDetails = document.getElementById("extra-details").value;
+
+            const imageFile = document.getElementById("photo-upload").files[0];
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const logEntry = {
+                        date: entryDate,
+                        workout: workoutDetails,
+                        food: foodDetails,
+                        extra: extraDetails,
+                        image: e.target.result // ✅ Base64로 변환하여 저장
+                    };
+                    localStorage.setItem("trainingLog", JSON.stringify(logEntry));
+                    alert("✅ Training log saved!");
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                const logEntry = {
+                    date: entryDate,
+                    workout: workoutDetails,
+                    food: foodDetails,
+                    extra: extraDetails,
+                    image: null
+                };
+                localStorage.setItem("trainingLog", JSON.stringify(logEntry));
+                alert("✅ Training log saved!");
+            }
+        }
+
+        /* ✅ 저장된 기록 불러오기 */
+        function loadRecord() {
+            const savedData = localStorage.getItem("trainingLog");
+            if (savedData) {
+                const logEntry = JSON.parse(savedData);
+                document.getElementById("entry-date").value = logEntry.date;
+                document.getElementById("workout-details").value = logEntry.workout;
+                document.getElementById("food-details").value = logEntry.food;
+                document.getElementById("extra-details").value = logEntry.extra;
+
+                if (logEntry.image) {
+                    const imgPreview = document.getElementById("image-preview");
+                    imgPreview.src = logEntry.image;
+                    imgPreview.style.display = "block";
+                }
+            }
         }
     </script>
 
