@@ -6,7 +6,7 @@
     <title>UberMesh Training</title>
 
     <style>
-        /* ✅ 스타일 유지 */
+        /* ✅ 스타일 설정 */
         body {
             font-family: Arial, sans-serif;
             background: #000000;
@@ -63,7 +63,6 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* ✅ 버튼 정렬 */
         .record-buttons {
             display: flex;
             justify-content: center;
@@ -91,7 +90,6 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* ✅ 이미지 미리보기 스타일 */
         #image-preview {
             max-width: 100%;
             margin-top: 10px;
@@ -139,7 +137,7 @@
             document.getElementById("main-page").style.display = "block";
         }
 
-        /* ✅ 이미지 파일 선택 시 미리보기 */
+        /* ✅ 이미지 미리보기 */
         document.getElementById("photo-upload").addEventListener("change", function(event) {
             const file = event.target.files[0];
             if (file) {
@@ -160,32 +158,28 @@
             const foodDetails = document.getElementById("food-details").value;
             const extraDetails = document.getElementById("extra-details").value;
 
-            const imageFile = document.getElementById("photo-upload").files[0];
-            if (imageFile) {
+            const imageInput = document.getElementById("photo-upload");
+            if (imageInput.files.length > 0) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const logEntry = {
-                        date: entryDate,
-                        workout: workoutDetails,
-                        food: foodDetails,
-                        extra: extraDetails,
-                        image: e.target.result // ✅ Base64로 변환하여 저장
-                    };
-                    localStorage.setItem("trainingLog", JSON.stringify(logEntry));
-                    alert("✅ Training log saved!");
+                    saveToLocalStorage(entryDate, workoutDetails, foodDetails, extraDetails, e.target.result);
                 };
-                reader.readAsDataURL(imageFile);
+                reader.readAsDataURL(imageInput.files[0]);
             } else {
-                const logEntry = {
-                    date: entryDate,
-                    workout: workoutDetails,
-                    food: foodDetails,
-                    extra: extraDetails,
-                    image: null
-                };
-                localStorage.setItem("trainingLog", JSON.stringify(logEntry));
-                alert("✅ Training log saved!");
+                saveToLocalStorage(entryDate, workoutDetails, foodDetails, extraDetails, null);
             }
+        }
+
+        function saveToLocalStorage(date, workout, food, extra, image) {
+            const logEntry = {
+                date: date,
+                workout: workout,
+                food: food,
+                extra: extra,
+                image: image
+            };
+            localStorage.setItem("trainingLog", JSON.stringify(logEntry));
+            alert("✅ Training log saved!");
         }
 
         /* ✅ 저장된 기록 불러오기 */
