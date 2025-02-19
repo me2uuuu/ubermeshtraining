@@ -9,7 +9,7 @@
         /* ✅ 다크 모드 스타일 */
         body {
             font-family: Arial, sans-serif;
-            background: #000000;
+            background: #000000; /* ✅ 배경 블랙 */
             color: white;
             text-align: center;
             margin: 0;
@@ -20,7 +20,7 @@
             max-width: 800px;
             margin: auto;
             padding: 20px;
-            background: #000000;
+            background: #000000; /* ✅ 배경 블랙 유지 */
             border-radius: 8px;
         }
 
@@ -39,6 +39,94 @@
 
         h1, h2 {
             color: white;
+        }
+
+        .portfolio {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .portfolio img {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+
+        .contact {
+            margin-top: 20px;
+        }
+
+        .contact a, .record-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            text-decoration: none;
+            border: 2px solid white;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .contact a:hover, .record-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .record-btn {
+            background: none;
+        }
+
+        /* ✅ 운동 기록 페이지 간격 조정 */
+        .record-page {
+            display: none;
+            padding: 40px 20px;
+            background: #000000;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* ✅ 폼 내부 요소 간격 정리 */
+        .record-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        textarea, input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background: #222;
+            color: white;
+        }
+
+        /* ✅ 파일 선택 버튼 (블랙) */
+        #photo-upload {
+            display: none; /* 기본 input[type="file"] 숨기기 */
+        }
+
+        .file-upload-label {
+            display: inline-block;
+            background: black; /* ✅ 블랙 배경 */
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            border: 2px solid white;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .file-upload-label:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         /* ✅ 버튼 스타일 */
@@ -61,32 +149,9 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s ease-in-out;
-            text-align: center;
         }
 
         .save-btn:hover, .back-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* ✅ 파일 업로드 버튼을 Save File 버튼으로 변경 */
-        #photo-upload {
-            display: none;
-        }
-
-        .save-btn {
-            display: inline-block;
-            background: black;
-            color: white;
-            padding: 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            text-align: center;
-            border: 2px solid white;
-            transition: background 0.3s ease-in-out;
-        }
-
-        .save-btn:hover {
             background: rgba(255, 255, 255, 0.2);
         }
     </style>
@@ -100,9 +165,26 @@
         </header>
 
         <h1>Welcome to UberMesh Training</h1>
+        <p class="bio">
+            "Experience the fusion of fitness and style!<br>
+            Dedicated to providing the best training and modeling expertise."
+        </p>
+
+        <h2>Portfolio</h2>
+        <div class="portfolio">
+            <img src="https://lh3.googleusercontent.com/d/1qfNZdo2jmWVnNyNmE0Tq-5A9gMkm_GT_=w1000" alt="Fitness Photo 1">
+            <img src="https://lh3.googleusercontent.com/d/13iYBYBk3w52nwpGd7xg-CfQbYd3gwDkf=w1000" alt="Fitness Photo 2">
+            <img src="https://lh3.googleusercontent.com/d/1zTMg0Up6RkMnuxQRxH9_N0jRZhjw9StL=w1000" alt="Fitness Photo 3">
+        </div>
 
         <h2>Training Log</h2>
         <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
+
+        <h2>Contact & Social Media</h2>
+        <div class="contact">
+            <a href="https://instagram.com/gangster_yayong" target="_blank">Instagram</a>
+            <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
+        </div>
     </div>
 
     <!-- ✅ 두 번째 페이지 -->
@@ -118,15 +200,14 @@
             <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
             <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
             
-            <!-- ✅ Save File 버튼 (파일 업로드 버튼이었던 걸로 대체) -->
+            <!-- ✅ 파일 업로드 버튼 -->
             <input type="file" id="photo-upload">
-            <label for="photo-upload" class="save-btn">Save File</label>
+            <label for="photo-upload" class="file-upload-label">📁 Select File</label>
         </div>
 
-        <!-- ✅ Save File + Back 버튼 (크기 동일) -->
+        <!-- ✅ 버튼 가운데 정렬 -->
         <div class="record-buttons">
-            <label for="photo-upload" class="save-btn">Save File</label>
-            <button class="back-btn" onclick="goBack()">Back</button>
+            <button class="save-btn" onclick="goBack()">Back</button>
         </div>
     </div>
 
