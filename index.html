@@ -1,26 +1,94 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UberMesh Training</title>
+
     <style>
+        /* ✅ 다크 모드 스타일 */
         body {
             font-family: Arial, sans-serif;
-            background: #000;
+            background: #000000;
             color: white;
             text-align: center;
             margin: 0;
             padding: 0;
         }
+
         .container {
             max-width: 800px;
             margin: auto;
             padding: 20px;
-            background: #111;
+            background: #111111;
             border-radius: 8px;
             box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
         }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 250px;
+            height: auto;
+            filter: invert(1);
+        }
+
+        .header-line {
+            width: 80%;
+            height: 2px;
+            background-color: white;
+            margin-top: 10px;
+        }
+
+        h1, h2 {
+            color: white;
+        }
+
+        .portfolio {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .portfolio img {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+
+        .contact {
+            margin-top: 20px;
+        }
+
+        .contact a, .record-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            text-decoration: none;
+            border: 2px solid white;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .contact a:hover, .record-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .record-btn {
+            background: none;
+        }
+
+        /* ✅ 운동 기록 페이지 (버튼 클릭 시 보이게) */
         .record-page {
             display: none;
             padding: 20px;
@@ -28,16 +96,16 @@
             border-radius: 8px;
             margin-top: 30px;
             box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
-            max-width: 600px;
-            margin: auto;
         }
+
         .record-form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
+            gap: 10px;
+            max-width: 600px;  /* ✅ 가로 폭 줄이기 */
             margin: auto;
         }
+
         textarea, input {
             width: 100%;
             padding: 10px;
@@ -46,15 +114,18 @@
             background: #222;
             color: white;
         }
+
+        /* ✅ "Save Entry" & "Back" 버튼을 첫 페이지 버튼과 동일한 스타일로 변경 */
         .record-buttons {
             display: flex;
             justify-content: space-between;
             margin-top: 15px;
-            gap: 10px;
         }
-        .save-btn, .back-btn {
+
+        .record-buttons button {
             flex: 1;
-            padding: 12px;
+            margin: 0 5px;
+            padding: 10px;
             border: 2px solid white;
             color: white;
             background: none;
@@ -64,16 +135,63 @@
             cursor: pointer;
             transition: background 0.3s ease-in-out;
         }
-        .save-btn:hover, .back-btn:hover {
+
+        .record-buttons button:hover {
             background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ✅ 기록 리스트 스타일 */
+        .record-list {
+            background: #111;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            max-width: 600px; /* ✅ 가로 폭 줄이기 */
+            margin: auto;
+        }
+
+        #entry-list div {
+            background: #333;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            text-align: left;
+            border: 1px solid #444;
         }
     </style>
 </head>
 <body>
+
+    <header>
+        <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
+        <div class="header-line"></div>
+    </header>
+
     <div class="container" id="main-page">
         <h1>Welcome to UberMesh Training</h1>
+        <p class="bio">
+            "Experience the fusion of fitness and style!<br>
+            Dedicated to providing the best training and modeling expertise."
+        </p>
+
+        <h2>Portfolio</h2>
+        <div class="portfolio">
+            <img src="https://lh3.googleusercontent.com/d/1qfNZdo2jmWVnNyNmE0Tq-5A9gMkm_GT_=w1000" alt="Fitness Photo 1">
+            <img src="https://lh3.googleusercontent.com/d/13iYBYBk3w52nwpGd7xg-CfQbYd3gwDkf=w1000" alt="Fitness Photo 2">
+            <img src="https://lh3.googleusercontent.com/d/1zTMg0Up6RkMnuxQRxH9_N0jRZhjw9StL=w1000" alt="Fitness Photo 3">
+        </div>
+
+        <h2>Training Log</h2>
         <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
+
+        <h2>Contact & Social Media</h2>
+        <div class="contact">
+            <a href="https://instagram.com/gangster_yayong" target="_blank">Instagram</a>
+            <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
+        </div>
     </div>
+
+    <!-- ✅ 운동 기록 페이지 -->
     <div class="record-page" id="record-page">
         <h2>📓 Today's Log</h2>
         <div class="record-form">
@@ -81,24 +199,26 @@
             <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
             <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
             <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
+            <input type="file" id="photo-upload">
         </div>
+
+        <!-- ✅ "Save Entry" & "Back" 버튼 스타일 통일 -->
         <div class="record-buttons">
-            <button class="save-btn" onclick="saveEntry()">Save Entry</button>
-            <button class="back-btn" onclick="goBack()">Back</button>
+            <button onclick="goBack()">⬅️ Back</button>
+            <button onclick="saveEntry()">Save Entry</button>
         </div>
+
+        <div id="entry-list" class="record-list"></div>
     </div>
+
     <script>
-        function saveEntry() {
-            const date = document.getElementById("entry-date").value;
-            const workout = document.getElementById("workout-details").value;
-            const food = document.getElementById("food-details").value;
-            const extra = document.getElementById("extra-details").value;
-            if (!date) {
-                alert("날짜를 입력하세요!");
-                return;
-            }
-            alert("기록이 저장되었습니다!");
+        /* ✅ 버튼 클릭 시 페이지 전환 */
+        function showRecordPage() {
+            document.getElementById("main-page").style.display = "none";
+            document.getElementById("record-page").style.display = "block";
         }
-    </script>
-</body>
-</html>
+
+        function goBack() {
+            document.getElementById("record-page").style.display = "none";
+            document.getElementById("main-page").style.display = "block";
+        }
