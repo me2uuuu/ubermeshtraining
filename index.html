@@ -222,6 +222,11 @@
             const food = document.getElementById("food-details").value;
             const extra = document.getElementById("extra-details").value;
 
+            if (!date || !workout || !food || !extra) {
+                alert("모든 필드를 입력해주세요.");
+                return;
+            }
+
             const list = document.getElementById("entry-list");
             const entry = document.createElement("div");
             entry.innerHTML = `<h3>📅 ${date}</h3>
@@ -229,6 +234,12 @@
                                <p>🍽️ ${food}</p>
                                <p>📝 ${extra}</p>`;
             list.prepend(entry);
+
+            // 입력 필드 초기화
+            document.getElementById("entry-date").value = '';
+            document.getElementById("workout-details").value = '';
+            document.getElementById("food-details").value = '';
+            document.getElementById("extra-details").value = '';
         }
     </script>
 
