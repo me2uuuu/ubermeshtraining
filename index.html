@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -88,7 +87,7 @@
             background: none;
         }
 
-        /* ✅ 운동 기록 페이지 (버튼 클릭 시 보이게) */
+        /* ✅ 운동 기록 페이지 */
         .record-page {
             display: none;
             padding: 20px;
@@ -96,13 +95,15 @@
             border-radius: 8px;
             margin-top: 30px;
             box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+            margin: auto;
         }
 
         .record-form {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            max-width: 600px;  /* ✅ 가로 폭 줄이기 */
+            gap: 15px;
+            max-width: 500px;
             margin: auto;
         }
 
@@ -115,17 +116,17 @@
             color: white;
         }
 
-        /* ✅ "Save Entry" & "Back" 버튼을 첫 페이지 버튼과 동일한 스타일로 변경 */
+        /* ✅ 버튼 스타일 */
         .record-buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* 가로 정렬 */
             margin-top: 15px;
+            gap: 10px;
         }
 
-        .record-buttons button {
-            flex: 1;
-            margin: 0 5px;
-            padding: 10px;
+        .save-btn, .back-btn {
+            flex: 1; /* 버튼이 같은 크기로 */
+            padding: 12px;
             border: 2px solid white;
             color: white;
             background: none;
@@ -136,27 +137,18 @@
             transition: background 0.3s ease-in-out;
         }
 
-        .record-buttons button:hover {
+        .save-btn:hover, .back-btn:hover {
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* ✅ 기록 리스트 스타일 */
-        .record-list {
-            background: #111;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            max-width: 600px; /* ✅ 가로 폭 줄이기 */
-            margin: auto;
+        /* ✅ 파일 업로드(input type="file")와 버튼 사이 간격 추가 */
+        .file-upload {
+            margin-bottom: 20px;
         }
 
-        #entry-list div {
-            background: #333;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 8px;
-            text-align: left;
-            border: 1px solid #444;
+        /* ✅ 불필요한 검정 사각형 제거 */
+        .record-list {
+            display: none;
         }
     </style>
 </head>
@@ -199,13 +191,13 @@
             <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
             <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
             <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
-            <input type="file" id="photo-upload">
+            <input type="file" id="photo-upload" class="file-upload">
         </div>
 
-        <!-- ✅ "Save Entry" & "Back" 버튼 스타일 통일 -->
+        <!-- ✅ "Save Entry"와 "Back"을 가로로 배치 -->
         <div class="record-buttons">
-            <button onclick="goBack()">⬅️ Back</button>
-            <button onclick="saveEntry()">Save Entry</button>
+            <button class="save-btn" onclick="saveEntry()">Save Entry</button>
+            <button class="back-btn" onclick="goBack()">Back</button>
         </div>
 
         <div id="entry-list" class="record-list"></div>
@@ -222,3 +214,23 @@
             document.getElementById("record-page").style.display = "none";
             document.getElementById("main-page").style.display = "block";
         }
+
+        /* ✅ 운동 기록 저장 */
+        function saveEntry() {
+            const date = document.getElementById("entry-date").value;
+            const workout = document.getElementById("workout-details").value;
+            const food = document.getElementById("food-details").value;
+            const extra = document.getElementById("extra-details").value;
+
+            const list = document.getElementById("entry-list");
+            const entry = document.createElement("div");
+            entry.innerHTML = `<h3>📅 ${date}</h3>
+                               <p>🏋️ ${workout}</p>
+                               <p>🍽️ ${food}</p>
+                               <p>📝 ${extra}</p>`;
+            list.prepend(entry);
+        }
+    </script>
+
+</body>
+</html>
