@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,7 +14,6 @@
             margin: 0;
             padding: 0;
         }
-
         .container {
             max-width: 800px;
             margin: auto;
@@ -24,12 +22,8 @@
             border-radius: 8px;
             box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
         }
-
-        h1, h2 {
-            color: white;
-        }
-
         .record-page {
+            display: none;
             padding: 20px;
             background: #222;
             border-radius: 8px;
@@ -38,7 +32,6 @@
             max-width: 600px;
             margin: auto;
         }
-
         .record-form {
             display: flex;
             flex-direction: column;
@@ -46,7 +39,6 @@
             max-width: 500px;
             margin: auto;
         }
-
         textarea, input {
             width: 100%;
             padding: 10px;
@@ -55,15 +47,13 @@
             background: #222;
             color: white;
         }
-
         .record-buttons {
             display: flex;
             justify-content: space-between;
             margin-top: 15px;
             gap: 10px;
         }
-
-        .save-btn {
+        .save-btn, .back-btn {
             flex: 1;
             padding: 12px;
             border: 2px solid white;
@@ -75,86 +65,68 @@
             cursor: pointer;
             transition: background 0.3s ease-in-out;
         }
-
-        .save-btn:hover {
+        .save-btn:hover, .back-btn:hover {
             background: rgba(255, 255, 255, 0.2);
-        }
-
-        .record-list {
-            margin-top: 20px;
-            padding: 10px;
-            background: #111;
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>Training Log</h1>
-        <div class="record-page">
-            <h2>📓 Today's Log</h2>
-            <div class="record-form">
-                <input type="date" id="entry-date">
-                <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
-                <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
-                <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
-            </div>
-
-            <button class="save-btn" onclick="saveEntry()">💾 Save Entry</button>
-
-            <div id="entry-list" class="record-list"></div>
-        </div>
+    <div class="container" id="main-page">
+        <h1>Welcome to UberMesh Training</h1>
+        <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
     </div>
-
+    <div class="record-page" id="record-page">
+        <h2>📓 Today's Log</h2>
+        <div class="record-form">
+            <input type="date" id="entry-date">
+            <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
+            <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
+            <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
+        </div>
+        <div class="record-buttons">
+            <button class="save-btn" onclick="saveEntry()">Save Entry</button>
+            <button class="back-btn" onclick="goBack()">Back</button>
+        </div>
+        <div id="entry-list"></div>
+    </div>
     <script>
-        document.addEventListener("DOMContentLoaded", loadEntries);
-
+        function showRecordPage() {
+            document.getElementById("main-page").style.display = "none";
+            document.getElementById("record-page").style.display = "block";
+            loadEntries();
+        }
+        function goBack() {
+            document.getElementById("record-page").style.display = "none";
+            document.getElementById("main-page").style.display = "block";
+        }
         function saveEntry() {
             const date = document.getElementById("entry-date").value;
             const workout = document.getElementById("workout-details").value;
             const food = document.getElementById("food-details").value;
             const extra = document.getElementById("extra-details").value;
-
             if (!date) {
-                alert("📅 날짜를 입력하세요!");
+                alert("날짜를 입력하세요!");
                 return;
             }
-
-            const entry = {
-                date,
-                workout,
-                food,
-                extra
-            };
-
             let entries = JSON.parse(localStorage.getItem("entries")) || [];
-            entries.unshift(entry);
+            entries.unshift({ date, workout, food, extra });
             localStorage.setItem("entries", JSON.stringify(entries));
-
-            displayEntries();
+            loadEntries();
+            alert("기록이 저장되었습니다!");
         }
-
         function loadEntries() {
-            displayEntries();
-        }
-
-        function displayEntries() {
             const list = document.getElementById("entry-list");
             list.innerHTML = "";
-
             let entries = JSON.parse(localStorage.getItem("entries")) || [];
             entries.forEach(entry => {
-                const entryDiv = document.createElement("div");
-                entryDiv.innerHTML = `<h3>📅 ${entry.date}</h3>
-                                      <p>🏋️ ${entry.workout}</p>
-                                      <p>🍽️ ${entry.food}</p>
-                                      <p>📝 ${entry.extra}</p>`;
-                list.appendChild(entryDiv);
+                const div = document.createElement("div");
+                div.innerHTML = `<h3>📅 ${entry.date}</h3>
+                                 <p>🏋️ ${entry.workout}</p>
+                                 <p>🍽️ ${entry.food}</p>
+                                 <p>📝 ${entry.extra}</p>`;
+                list.appendChild(div);
             });
         }
     </script>
-
 </body>
 </html>
