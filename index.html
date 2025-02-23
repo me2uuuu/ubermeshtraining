@@ -126,12 +126,12 @@
 
         .save-btn, .back-btn {
             flex: 1;
-            padding: 8px; /* 크기 줄임 */
+            padding: 8px;
             border: 2px solid white;
             color: white;
             background: none;
             font-weight: bold;
-            font-size: 14px; /* 폰트 크기 줄임 */
+            font-size: 14px;
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s ease-in-out;
@@ -216,6 +216,7 @@
         function goBack() {
             document.getElementById("record-page").style.display = "none";
             document.getElementById("main-page").style.display = "block";
+            document.getElementById("photo-preview").style.display = "none"; // 미리보기 초기화
         }
 
         function previewPhoto() {
@@ -242,12 +243,17 @@
             const extra = document.getElementById("extra-details").value;
             const photo = document.getElementById("photo-preview").src || "";
 
+            if (!date && !workout && !food && !extra && !photo) {
+                alert("Please enter at least one detail to save.");
+                return;
+            }
+
             const list = document.getElementById("entry-list");
             const entry = document.createElement("div");
-            entry.innerHTML = `<h3>📅 ${date}</h3>
-                               <p>🏋️ ${workout}</p>
-                               <p>🍽️ ${food}</p>
-                               <p>📝 ${extra}</p>
+            entry.innerHTML = `<h3>📅 ${date || "No date"}</h3>
+                               <p>🏋️ ${workout || "No workout details"}</p>
+                               <p>🍽️ ${food || "No food details"}</p>
+                               <p>📝 ${extra || "No extra notes"}</p>
                                ${photo ? `<img src="${photo}" style="max-width: 100%; border-radius: 5px;">` : ""}`;
             list.prepend(entry);
 
