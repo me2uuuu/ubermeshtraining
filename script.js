@@ -1,62 +1,46 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #000000;
-    color: white;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    padding-bottom: 100px;
-    min-height: 100vh;
-    box-sizing: border-box;
+function previewPhoto() {
+    const fileInput = document.getElementById("photo-upload");
+    const preview = document.getElementById("photo-preview");
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+    } else {
+        preview.style.display = "none";
+    }
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    background: #111111;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
-}
+function saveEntry() {
+    const date = document.getElementById("entry-date").value;
+    const workout = document.getElementById("workout-details").value;
+    const food = document.getElementById("food-details").value;
+    const extra = document.getElementById("extra-details").value;
+    const photo = document.getElementById("photo-preview").src || "";
 
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
+    if (!date && !workout && !food && !extra && !photo) {
+        alert("Please enter at least one detail to save.");
+        return;
+    }
 
-.logo {
-    width: 250px;
-    height: auto;
-    filter: invert(1);
-}
+    const list = document.getElementById("entry-list");
+    const entry = document.createElement("div");
+    entry.innerHTML = `<h3>📅 ${date || "No date"}</h3>
+                       <p>🏋️ ${workout || "No workout details"}</p>
+                       <p>🍽️ ${food || "No food details"}</p>
+                       <p>📝 ${extra || "No extra notes"}</p>
+                       ${photo ? `<img src="${photo}" style="max-width: 100%; border-radius: 5px;">` : ""}`;
+    list.prepend(entry);
 
-.header-line {
-    width: 80%;
-    height: 2px;
-    background-color: white;
-    margin-top: 10px;
-}
-
-h1, h2 {
-    color: white;
-}
-
-button, .contact a {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    text-decoration: none;
-    border: 0.7px solid white;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    border-radius: 8px;
-    transition: background 0.3s ease-in-out;
-    background: none;
-}
-
-button:hover, .contact a:hover {
-    background: rgba(255, 255, 255, 0.2);
+    // 입력 필드 초기화
+    document.getElementById("entry-date").value = "";
+    document.getElementById("workout-details").value = "";
+    document.getElementById("food-details").value = "";
+    document.getElementById("extra-details").value = "";
+    document.getElementById("photo-upload").value = "";
+    document.getElementById("photo-preview").style.display = "none";
 }
