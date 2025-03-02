@@ -88,73 +88,6 @@
         .record-btn {
             background: none;
         }
-
-        .record-page {
-            display: none;
-            padding: 20px;
-            background: #222;
-            border-radius: 8px;
-            margin-top: 30px;
-            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .record-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
-            margin: auto;
-        }
-
-        textarea, input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #555;
-            background: #222;
-            color: white;
-        }
-
-        .record-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            gap: 10px;
-        }
-
-        .save-btn, .back-btn {
-            flex: 1;
-            padding: 8px;
-            border: 2px solid white;
-            color: white;
-            background: none;
-            font-weight: bold;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease-in-out;
-        }
-
-        .save-btn:hover, .back-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .file-upload {
-            margin-bottom: 20px;
-        }
-
-        .record-list {
-            display: none;
-        }
-
-        #photo-preview {
-            max-width: 100%;
-            margin-top: 10px;
-            border-radius: 5px;
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -164,7 +97,7 @@
         <div class="header-line"></div>
     </header>
 
-    <div class="container" id="main-page">
+    <div class="container">
         <h1>Welcome to UberMesh Training</h1>
         <p class="bio">
             "Experience the fusion of fitness and style!<br>
@@ -184,88 +117,9 @@
         <h2>Contact & Social Media</h2>
         <div class="contact">
             <a href="https://instagram.com/gangster_yayong" target="_blank">Instagram</a>
+            <a href="mailto:chang14@naver.com">Email: chang14@naver.com</a>
             <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
         </div>
     </div>
-
-    <div class="record-page" id="record-page">
-        <h2>📓 Today's Log</h2>
-        <div class="record-form">
-            <input type="date" id="entry-date">
-            <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
-            <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
-            <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
-            <input type="file" id="photo-upload" class="file-upload" accept="image/*" onchange="previewPhoto()">
-            <img id="photo-preview" alt="Photo Preview">
-        </div>
-
-        <div class="record-buttons">
-            <button class="save-btn" onclick="saveEntry()">Save Entry</button>
-            <button class="back-btn" onclick="goBack()">Back</button>
-        </div>
-
-        <div id="entry-list" class="record-list"></div>
-    </div>
-
-    <script>
-        function showRecordPage() {
-            document.getElementById("main-page").style.display = "none";
-            document.getElementById("record-page").style.display = "block";
-        }
-
-        function goBack() {
-            document.getElementById("record-page").style.display = "none";
-            document.getElementById("main-page").style.display = "block";
-            document.getElementById("photo-preview").style.display = "none"; // 미리보기 초기화
-        }
-
-        function previewPhoto() {
-            const fileInput = document.getElementById("photo-upload");
-            const preview = document.getElementById("photo-preview");
-            const file = fileInput.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = "block";
-                };
-                reader.readAsDataURL(file);
-            } else {
-                preview.style.display = "none";
-            }
-        }
-
-        function saveEntry() {
-            const date = document.getElementById("entry-date").value;
-            const workout = document.getElementById("workout-details").value;
-            const food = document.getElementById("food-details").value;
-            const extra = document.getElementById("extra-details").value;
-            const photo = document.getElementById("photo-preview").src || "";
-
-            if (!date && !workout && !food && !extra && !photo) {
-                alert("Please enter at least one detail to save.");
-                return;
-            }
-
-            const list = document.getElementById("entry-list");
-            const entry = document.createElement("div");
-            entry.innerHTML = `<h3>📅 ${date || "No date"}</h3>
-                               <p>🏋️ ${workout || "No workout details"}</p>
-                               <p>🍽️ ${food || "No food details"}</p>
-                               <p>📝 ${extra || "No extra notes"}</p>
-                               ${photo ? `<img src="${photo}" style="max-width: 100%; border-radius: 5px;">` : ""}`;
-            list.prepend(entry);
-
-            // 입력 필드 초기화
-            document.getElementById("entry-date").value = "";
-            document.getElementById("workout-details").value = "";
-            document.getElementById("food-details").value = "";
-            document.getElementById("extra-details").value = "";
-            document.getElementById("photo-upload").value = "";
-            document.getElementById("photo-preview").style.display = "none";
-        }
-    </script>
-
 </body>
 </html>
