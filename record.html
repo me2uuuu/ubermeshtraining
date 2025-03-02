@@ -3,94 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UberMesh Training - Record</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #000000;
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            padding-bottom: 100px;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: #111111;
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
-        }
-
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .logo {
-            width: 250px;
-            height: auto;
-            filter: invert(1);
-        }
-
-        .header-line {
-            width: 80%;
-            height: 2px;
-            background-color: white;
-            margin-top: 10px;
-        }
-
-        h1, h2 {
-            color: white;
-        }
-
-        .record-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
-            margin: auto;
-        }
-
-        textarea, input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 0.7px solid white;
-            background: #222;
-            color: white;
-        }
-
-        .record-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            gap: 10px;
-        }
-
-        .save-btn, .back-btn {
-            flex: 1;
-            padding: 10px;
-            border: 0.7px solid white;
-            color: white;
-            background: none;
-            font-weight: bold;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease-in-out;
-        }
-
-        .save-btn:hover, .back-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-    </style>
+    <title>Workout Log</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -100,28 +15,21 @@
     </header>
 
     <div class="container">
-        <h1>📓 Today's Log</h1>
-        <div class="record-form">
-            <input type="date" id="entry-date">
-            <textarea id="workout-details" placeholder="🏋️ Workout details"></textarea>
-            <textarea id="food-details" placeholder="🍽️ Food details"></textarea>
-            <textarea id="extra-details" placeholder="📝 Extra notes"></textarea>
+        <h1>📓 Today's Workout Log</h1>
+        <div class="record-section">
+            <input type="date" id="entry-date" class="custom-input">
+            <textarea id="workout-details" class="custom-input" placeholder="🏋️ Workout details"></textarea>
+            <textarea id="food-details" class="custom-input" placeholder="🍽️ Food details"></textarea>
+            <textarea id="extra-details" class="custom-input" placeholder="📝 Extra notes"></textarea>
+            <input type="file" id="photo-upload" class="custom-input" accept="image/*">
         </div>
 
-        <div class="record-buttons">
-            <button class="save-btn" onclick="saveEntry()">Save Entry</button>
-            <button class="back-btn" onclick="goBack()">Back</button>
-        </div>
+        <button class="custom-btn" onclick="saveEntry()">Save Entry</button>
+        <button class="custom-btn" onclick="location.href='index.html'">Back</button>
+
+        <h2>Past Entries</h2>
+        <div id="entry-list" class="record-list"></div>
     </div>
 
-    <script>
-        function goBack() {
-            window.location.href = 'index.html';
-        }
-
-        function saveEntry() {
-            alert('Entry saved!');
-        }
-    </script>
 </body>
 </html>
