@@ -88,6 +88,56 @@
         .record-btn {
             background: none;
         }
+
+        .record-page {
+            display: none;
+            padding: 20px;
+            background: #222;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #ddd;
+        }
+
+        .custom-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background: #333;
+            color: white;
+            font-size: 14px;
+        }
+
+        .custom-btn {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid white;
+            background: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .custom-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -97,13 +147,8 @@
         <div class="header-line"></div>
     </header>
 
-    <div class="container">
+    <div class="container" id="main-page">
         <h1>Welcome to UberMesh Training</h1>
-        <p class="bio">
-            "Experience the fusion of fitness and style!<br>
-            Dedicated to providing the best training and modeling expertise."
-        </p>
-
         <h2>Portfolio</h2>
         <div class="portfolio">
             <img src="https://lh3.googleusercontent.com/d/1qfNZdo2jmWVnNyNmE0Tq-5A9gMkm_GT_=w1000" alt="Fitness Photo 1">
@@ -112,7 +157,7 @@
         </div>
 
         <h2>Training Log</h2>
-        <button class="record-btn" onclick="location.href='record.html'">📖 Write Today's Log</button>
+        <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
 
         <h2>Contact & Social Media</h2>
         <div class="contact">
@@ -121,5 +166,29 @@
             <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
         </div>
     </div>
+
+    <div class="record-page" id="record-page">
+        <h2>📓 Today's Log</h2>
+        <div class="input-group">
+            <label for="entry-date">날짜 선택</label>
+            <input type="date" id="entry-date" class="custom-input">
+        </div>
+        <div class="input-group">
+            <label for="workout-details">오늘의 운동</label>
+            <textarea id="workout-details" class="custom-input"></textarea>
+        </div>
+        <button class="custom-btn" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        function showRecordPage() {
+            document.getElementById("main-page").style.display = "none";
+            document.getElementById("record-page").style.display = "block";
+        }
+        function goBack() {
+            document.getElementById("record-page").style.display = "none";
+            document.getElementById("main-page").style.display = "block";
+        }
+    </script>
 </body>
 </html>
