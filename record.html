@@ -1,54 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training Log</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>UberMesh Training</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #000000;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 100px;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #111111;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 250px;
+            height: auto;
+            filter: invert(1);
+        }
+
+        .header-line {
+            width: 80%;
+            height: 2px;
+            background-color: white;
+            margin-top: 10px;
+        }
+
+        h1, h2 {
+            color: white;
+        }
+
+        .portfolio {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .portfolio img {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+
+        .contact {
+            margin-top: 20px;
+        }
+
+        .contact a, .record-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            text-decoration: none;
+            border: 2px solid white;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .contact a:hover, .record-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .record-btn {
+            background: none;
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <img src="https://i.imgur.com/xUIPA1Z.png" alt="UberMesh Logo" class="logo">
+        <div class="header-line"></div>
     </header>
 
     <div class="container">
-        <h1>Training Log</h1>
+        <h1>Welcome to UberMesh Training</h1>
         <p class="bio">
-            "Stay on track and elevate your fitness journey."
+            "Experience the fusion of fitness and style!<br>
+            Dedicated to providing the best training and modeling expertise."
         </p>
 
-        <section class="record-section">
-            <h2>📅 Date</h2>
-            <input type="date" id="entry-date">
+        <h2>Portfolio</h2>
+        <div class="portfolio">
+            <img src="https://lh3.googleusercontent.com/d/1qfNZdo2jmWVnNyNmE0Tq-5A9gMkm_GT_=w1000" alt="Fitness Photo 1">
+            <img src="https://lh3.googleusercontent.com/d/13iYBYBk3w52nwpGd7xg-CfQbYd3gwDkf=w1000" alt="Fitness Photo 2">
+            <img src="https://lh3.googleusercontent.com/d/1zTMg0Up6RkMnuxQRxH9_N0jRZhjw9StL=w1000" alt="Fitness Photo 3">
+        </div>
 
-            <h2>🏋️ Workout</h2>
-            <textarea id="workout-details" placeholder="Log your workout (e.g., Squat 30 reps)"></textarea>
+        <h2>Training Log</h2>
+        <button class="record-btn" onclick="location.href='record.html'">📖 Write Today's Log</button>
 
-            <h2>🍽️ Meals</h2>
-            <textarea id="food-details" placeholder="Log your meals (e.g., Chicken breast, banana)"></textarea>
-
-            <h2>📝 Notes</h2>
-            <textarea id="extra-details" placeholder="Write additional notes..."></textarea>
-
-            <h2>📸 Add a Photo</h2>
-            <input type="file" id="photo-upload" accept="image/*">
-
-            <button onclick="saveEntry()">💾 Save Log</button>
-        </section>
-
-        <section class="record-list">
-            <h2>📖 My Logs</h2>
-            <div id="entry-list"></div>
-        </section>
-
-        <footer>
-            <a href="index.html">
-                <button>🏠 Back to Portfolio</button>
-            </a>
-        </footer>
+        <h2>Contact & Social Media</h2>
+        <div class="contact">
+            <a href="https://instagram.com/gangster_yayong" target="_blank">Instagram</a>
+            <a href="mailto:chang14@naver.com">Email: chang14@naver.com</a>
+            <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
+        </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
