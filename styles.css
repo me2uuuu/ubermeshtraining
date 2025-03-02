@@ -1,10 +1,13 @@
 body {
     font-family: Arial, sans-serif;
-    background: #000000; /* 다크 모드 배경 */
+    background: #000000;
     color: white;
     text-align: center;
     margin: 0;
     padding: 0;
+    padding-bottom: 100px;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 .container {
@@ -21,118 +24,39 @@ header {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    position: relative;
 }
 
 .logo {
-    width: 250px; /* 로고 크기 유지 */
+    width: 250px;
     height: auto;
-    filter: invert(1); /* 로고를 흰색으로 변환 */
+    filter: invert(1);
 }
 
 .header-line {
     width: 80%;
     height: 2px;
-    background-color: white; /* 흰색 줄 추가 */
+    background-color: white;
     margin-top: 10px;
-    position: relative; /* 로고 밑에 위치하도록 조정 */
 }
 
 h1, h2 {
     color: white;
 }
 
-.portfolio {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.portfolio img {
-    width: 100%;
-    max-width: 300px;
-    margin: 10px;
-    border-radius: 8px;
-}
-
-.contact {
-    margin-top: 20px;
-}
-
-.contact a, .record-btn {
+button, .contact a {
     display: inline-block;
     padding: 10px 20px;
-    margin: 10px 10px;
+    margin: 10px;
     text-decoration: none;
-    border: 2px solid white; /* 버튼 흰색 테두리 */
-    color: white; /* 글씨 흰색 */
+    border: 0.7px solid white;
+    color: white;
     font-weight: bold;
     font-size: 16px;
-    border-radius: 5px;
-}
-
-.contact a:hover, .record-btn:hover {
-    background: rgba(255, 255, 255, 0.2); /* 마우스 오버 시 효과 */
-}
-
-
-body {
-    font-family: Arial, sans-serif;
-    background: #000000; /* 완전 블랙 배경 */
-    color: white; /* 흰색 글씨 */
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    background: #111111; /* 약간의 대비를 준 블랙 */
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease-in-out;
+    background: none;
 }
 
-textarea, input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #555;
-    background: #222; /* 입력칸도 블랙 계열 */
-    color: white;
-}
-
-button {
-    padding: 12px;
-    margin-top: 15px;
-    border-radius: 5px;
-    border: none;
-    background: white; /* 버튼은 흰색으로 */
-    color: black;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background: #ddd;
-    color: black;
-}
-
-.record-section, .record-list {
-    padding: 20px;
-    background: #222; /* 어두운 회색으로 섹션 구분 */
-    margin-top: 20px;
-    border-radius: 8px;
-}
-
-#entry-list div {
-    background: #333;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-    text-align: left;
-    border: 1px solid #444;
-    color: white;
+button:hover, .contact a:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
