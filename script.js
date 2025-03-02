@@ -1,69 +1,62 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const entries = JSON.parse(localStorage.getItem('workoutEntries') || '[]');
-    entries.forEach(entry => displayEntry(entry.date, entry.workout, entry.food, entry.extra, entry.photo));
-});
-
-function saveEntry() {
-    const date = document.getElementById("entry-date").value;
-    const workout = document.getElementById("workout-details").value;
-    const food = document.getElementById("food-details").value;
-    const extra = document.getElementById("extra-details").value;
-    const photoInput = document.getElementById("photo-upload");
-
-    const reader = new FileReader();
-    reader.onload = function () {
-        const entry = { date, workout, food, extra, photo: reader.result };
-        displayEntry(date, workout, food, extra, reader.result);
-        saveToLocalStorage(entry);
-    };
-
-    if (photoInput.files.length > 0) {
-        reader.readAsDataURL(photoInput.files[0]);
-    } else {
-        const entry = { date, workout, food, extra, photo: null };
-        displayEntry(date, workout, food, extra, null);
-        saveToLocalStorage(entry);
-    }
-
-    document.getElementById("entry-date").value = '';
-    document.getElementById("workout-details").value = '';
-    document.getElementById("food-details").value = '';
-    document.getElementById("extra-details").value = '';
-    photoInput.value = '';
+body {
+    font-family: Arial, sans-serif;
+    background: #000000;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 100px;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
-function displayEntry(date, workout, food, extra, photo) {
-    const list = document.getElementById("entry-list");
-    const entry = document.createElement("div");
-    entry.classList.add('entry-item');
-    entry.innerHTML = `
-        <h3>${date}</h3>
-        ${workout ? `<p><span class="icon">🏋️</span> ${workout}</p>` : ""}
-        ${food ? `<p><span class="icon">🍽️</span> ${food}</p>` : ""}
-        ${extra ? `<p><span class="icon">📝</span> ${extra}</p>` : ""}
-        ${photo ? `<img src="${photo}" style="max-width: 100%; border-radius: 8px;">` : ""}`;
-    list.prepend(entry);
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: #111111;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
 }
 
-function saveToLocalStorage(entry) {
-    const entries = JSON.parse(localStorage.getItem('workoutEntries') || '[]');
-    entries.unshift(entry);
-    localStorage.setItem('workoutEntries', JSON.stringify(entries));
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
-function previewPhoto() {
-    const fileInput = document.getElementById("photo-upload");
-    const preview = document.getElementById("photo-preview");
-    const file = fileInput.files[0];
+.logo {
+    width: 250px;
+    height: auto;
+    filter: invert(1);
+}
 
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            preview.src = e.target.result;
-            preview.style.display = "block";
-        };
-        reader.readAsDataURL(file);
-    } else {
-        preview.style.display = "none";
-    }
+.header-line {
+    width: 80%;
+    height: 2px;
+    background-color: white;
+    margin-top: 10px;
+}
+
+h1, h2 {
+    color: white;
+}
+
+button, .contact a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    text-decoration: none;
+    border: 0.7px solid white;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+    background: none;
+}
+
+button:hover, .contact a:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
