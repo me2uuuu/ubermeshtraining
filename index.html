@@ -68,7 +68,7 @@
             margin-top: 20px;
         }
 
-        .contact a, .record-btn {
+        .btn-common {
             display: inline-block;
             padding: 10px 20px;
             margin: 10px;
@@ -79,20 +79,17 @@
             font-size: 16px;
             border-radius: 5px;
             transition: background 0.3s ease-in-out;
+            cursor: pointer;
         }
 
-        .contact a:hover, .record-btn:hover {
+        .btn-common:hover {
             background: rgba(255, 255, 255, 0.2);
-        }
-
-        .record-btn {
-            background: none;
         }
 
         .record-page {
             display: none;
             padding: 20px;
-            background: #222;
+            background: #1a1a1a;
             border-radius: 8px;
             margin-top: 30px;
             box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
@@ -116,27 +113,10 @@
             width: 100%;
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid #555;
+            border: 1px solid #777;
             background: #333;
             color: white;
             font-size: 14px;
-        }
-
-        .custom-btn {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid white;
-            background: none;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease-in-out;
-        }
-
-        .custom-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
@@ -157,13 +137,13 @@
         </div>
 
         <h2>Training Log</h2>
-        <button class="record-btn" onclick="showRecordPage()">📖 Write Today's Log</button>
+        <button class="btn-common" onclick="togglePage('record-page', 'main-page')">📖 Write Today's Log</button>
 
         <h2>Contact & Social Media</h2>
         <div class="contact">
-            <a href="https://instagram.com/gangster_yayong" target="_blank">Instagram</a>
-            <a href="mailto:chang14@naver.com">Email: chang14@naver.com</a>
-            <a href="https://open.kakao.com/o/syhgr9xc" target="_blank">Kakao Open Chat</a>
+            <a href="https://instagram.com/gangster_yayong" target="_blank" class="btn-common">Instagram</a>
+            <a href="mailto:chang14@naver.com?subject=Training Inquiry&body=Hello, I have a question about training." class="btn-common">Email</a>
+            <a href="https://open.kakao.com/o/syhgr9xc" target="_blank" class="btn-common">Kakao Open Chat</a>
         </div>
     </div>
 
@@ -177,17 +157,13 @@
             <label for="workout-details">오늘의 운동</label>
             <textarea id="workout-details" class="custom-input"></textarea>
         </div>
-        <button class="custom-btn" onclick="goBack()">Back</button>
+        <button class="btn-common" onclick="togglePage('main-page', 'record-page')">Back</button>
     </div>
 
     <script>
-        function showRecordPage() {
-            document.getElementById("main-page").style.display = "none";
-            document.getElementById("record-page").style.display = "block";
-        }
-        function goBack() {
-            document.getElementById("record-page").style.display = "none";
-            document.getElementById("main-page").style.display = "block";
+        function togglePage(show, hide) {
+            document.getElementById(show).style.display = "block";
+            document.getElementById(hide).style.display = "none";
         }
     </script>
 </body>
