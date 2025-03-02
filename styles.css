@@ -1,62 +1,74 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #000000;
-    color: white;
+    font-family: 'Arial', sans-serif;
+    background: #000000; /* 다크모드 배경 */
+    color: #FFFFFF;
     text-align: center;
     margin: 0;
     padding: 0;
-    padding-bottom: 100px;
-    min-height: 100vh;
-    box-sizing: border-box;
 }
 
 .container {
     max-width: 800px;
-    margin: auto;
+    margin: 20px auto;
     padding: 20px;
     background: #111111;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
 }
 
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
 .logo {
     width: 250px;
     height: auto;
+    margin-bottom: 20px;
     filter: invert(1);
 }
 
-.header-line {
-    width: 80%;
-    height: 2px;
-    background-color: white;
-    margin-top: 10px;
-}
-
 h1, h2 {
-    color: white;
+    color: #FFFFFF;
+    margin-bottom: 15px;
 }
 
-button, .contact a {
+.portfolio img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+.custom-btn {
     display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
+    padding: 12px 24px;
+    margin: 5px;
     text-decoration: none;
-    border: 0.7px solid white;
-    color: white;
+    color: #FFFFFF;
     font-weight: bold;
     font-size: 16px;
-    border-radius: 8px;
-    transition: background 0.3s ease-in-out;
     background: none;
+    border: 0.7px solid #FFFFFF;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
 }
 
-button:hover, .contact a:hover {
+.custom-btn:hover {
     background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.custom-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 0.7px solid #FFFFFF;
+    background: #222222;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+#entry-list div {
+    background: #222222;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    text-align: left;
+    border: 0.7px solid #FFFFFF;
 }
